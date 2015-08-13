@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 
-gem 'rails', '4.1.1'
+gem 'rails',                '4.1.1'
 
 gem 'sqlite3'
 gem 'pg'
@@ -19,7 +19,7 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bootstrap_form'
 gem 'autoprefixer-rails'
 gem 'bcrypt-ruby'
-
+gem 'figaro',               '1.0.0'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
