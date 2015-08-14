@@ -1,7 +1,7 @@
-class UiController < ApplicationController  
+class UiController < ApplicationController
   layout "application"
-  
-  def index    
+
+  def index
   end
 
 end
