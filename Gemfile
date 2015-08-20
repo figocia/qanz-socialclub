@@ -17,6 +17,7 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'autoprefixer-rails'
 gem 'bcrypt-ruby'
 gem 'figaro',               '1.0.0'
+gem 'gmaps4rails'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
