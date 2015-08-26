@@ -1,0 +1,106 @@
+.competition 
+  %h2 2015 Foosball Championship
+
+- 3.times do 
+  .container.round
+    .row       
+      .col-md-4
+        .panel.panel-primary
+          .panel-heading
+            %h3.panel-title Team A
+          .panel-body
+            %table.table.table-striped.table-hover
+              %thead
+                %tr
+
+                  %th(width="30%") Name
+                  %th(width="40%") Email
+                  %th(width="30%") Column heading
+              %tbody
+                %tr                
+                  %td Column contesdfa
+                  %td Column contentasdfasfsd
+                  %td Column content
+                %tr                
+                  %td Column content
+                  %td Column content
+                  %td Column content
+                %tr                
+                  %td Column content
+                  %td Column content
+                  %td Column content
+                %tr                
+                  %td Column content
+                  %td Column content
+                  %td Column content
+                %tr                
+                  %td Column content
+                  %td Column content
+                  %td Column content
+                %tr                
+                  %td Column content
+                  %td Column content
+                  %td Column content
+                %tr                
+                  %td Column content
+                  %td Column content
+                  %td Column content
+
+      
+      .col-md-3.vs
+        %h2 Round 1     
+        .vs-img
+      .col-md-4
+        .panel.panel-danger
+          .panel-heading
+            %h3.panel-title Team B
+          .panel-body
+            %table.table.table-striped.table-hover
+              %thead
+                %tr
+                  %th #
+                  %th Name
+                  %th Email
+                  %th Column heading
+              %tbody
+                %tr
+                  %td 1
+                  %td Column content
+                  %td Column content
+                  %td Column content
+                %tr
+                  %td 2
+                  %td Column content
+                  %td Column content
+                  %td Column content
+                %tr
+                  %td 3
+                  %td Column content
+                  %td Column content
+                  %td Column content
+                %tr
+                  %td 4
+                  %td Column content
+                  %td Column content
+                  %td Column content
+                %tr
+                  %td 5
+                  %td Column content
+                  %td Column content
+                  %td Column content
+                %tr
+                  %td 6
+                  %td Column content
+                  %td Column content
+                  %td Column content
+                %tr
+                  %td 7
+                  %td Column content
+                  %td Column content
+                  %td Column content
+    .row   
+      .col-md-2
+        = button_to "Send Reminder to TeamB", nil, class: "btn btn-default"                
+      .col-md-2  
+        = button_to 'Update Result', nil, class: "btn btn-primary"              
+
