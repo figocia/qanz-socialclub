@@ -1,0 +1,50 @@
+.container.round
+  .row       
+    .col-md-4
+      .panel.panel-primary
+        .panel-heading
+          %h3.panel-title 
+            = game.team_one.name
+        .panel-body
+          %table.table.table-striped.table-hover
+            %thead
+              %tr
+
+                %th(width="30%") Name
+                %th(width="40%") Email                
+            %tbody
+              - game.team_one.members.each do |member| 
+                %tr                
+                  %td
+                    = member.name
+                  %td 
+                    = member.email                                
+
+    .col-md-3.vs
+      %h2 
+        = game.round
+      .vs-img
+    .col-md-4
+      .panel.panel-danger
+        .panel-heading
+          %h3.panel-title
+            = game.team_two.name
+        .panel-body
+          %table.table.table-striped.table-hover
+            %thead
+              %tr
+
+                %th(width="30%") Name
+                %th(width="40%") Email                
+            %tbody
+              - game.team_two.members.each do |member| 
+                %tr                
+                  %td
+                    = member.name
+                  %td 
+                    = member.email    
+  .row   
+    .col-md-2
+      = button_to "Send Reminder to TeamB", nil, class: "btn btn-default"                
+    .col-md-2  
+      = button_to 'Update Result', nil, class: "btn 
