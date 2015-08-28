@@ -1,7 +1,7 @@
 .container.round
   .row       
     .col-md-4
-      .panel.panel-primary
+      .panel.panel-primary.panel-fix-height
         .panel-heading
           %h3.panel-title 
             = game.team_one.name
@@ -25,7 +25,7 @@
         = game.round
       .vs-img
     .col-md-4
-      .panel.panel-danger
+      .panel.panel-danger.panel-fix-height
         .panel-heading
           %h3.panel-title
             = game.team_two.name
