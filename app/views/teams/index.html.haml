@@ -1,52 +1,24 @@
-.leaderboard
-  %h1
-    Leader Board
-  %h2
-    2015 Foosball Championship
-  .content
-    %table.table.table-striped.table-hover
-      %thead
-        %tr
-          %th(width="20%") Rank
-          %th(width="40%") Team
-          %th(width="40%") Score
-          
-      %tbody
-        %tr
-          %td
-            %img(src="/tmp/cup.png" style="width: 25px; height: 25px;")
-          %td Column content
-          %td
-            %span.badge
-              15          
-        %tr
-          %td 2
-          %td Column content
-          %td
-            %span.badge
-              14          
-        %tr
-          %td 3
-          %td Column content
-          %td
-            %span.badge
-              13          
-        %tr
-          %td 4
-          %td Column content
-          %td
-            %span.badge
-              12          
-        %tr
-          %td 5
-          %td Column content
-          %td
-            %span.badge
-              11          
-        %tr
-          %td 6
-          %td Column content
-          %td
-            %span.badge
-              10          
-          
+.leaderboard-title
+  %h1 Leader Board
+- @competitions.each do |competition|
+  .leaderboard
+    %h2
+      = competition.name
+    .content
+      %table.table.table-striped.table-hover
+        %thead
+          %tr
+            %th(width="20%") Rank
+            %th(width="40%") Team
+            %th(width="40%") Score
+            
+        %tbody
+          -competition.teams.each do |team|          
+            %tr
+              %td
+                %img(src="/tmp/cup.png" style="width: 25px; height: 25px;")
+              %td
+                = team.name
+              %td
+                %span.badge
+                  = team.total_score            

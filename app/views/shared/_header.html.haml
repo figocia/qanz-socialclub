@@ -7,13 +7,14 @@
           %span.icon-bar
           %span.icon-bar
           %span.icon-bar
-        %a.navbar-brand{:href => "#"} QANZ Social Club
+        %a.navbar-brand{:href => "/home"} QANZ Social Club
       #bs-example-navbar-collapse-1.collapse.navbar-collapse
         %ul.nav.navbar-nav
-          %li.active
-            %a{:href => "#"}
-              Competition
-              %span.sr-only (current)
+          %li
+            = link_to 'Competition', games_path
+          %li
+            = link_to 'leader Board', leaderboard_path  
+            
           %li
             %a{:href => "#"} Social Events
           %li.dropdown

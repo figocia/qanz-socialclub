@@ -10,10 +10,11 @@
     padding:3%;
 }
 
-.leaderboard h1{
+
+.leaderboard-title{
     text-align: center;
     text-transform: uppercase;
-    margin:30px;
+    margin-bottom:30px;
     padding:0;
     color: #cc7713;
 }
