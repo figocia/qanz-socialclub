@@ -18,8 +18,8 @@ describe Team do
       game1 = Fabricate(:game, competition: competition, team_one: team1, team_two: team2, team_one_score: 10, team_two_score: 2)
       game2 = Fabricate(:game, competition: competition, team_one: team1, team_two: team2, team_one_score: 10, team_two_score: 2)
       game2 = Fabricate(:game, competition: competition, team_one: team2, team_two: team1, team_one_score: 2, team_two_score: 10)
-
-
+      
+      
       expect(team1.total_score).to eq(30)
     end
   end
