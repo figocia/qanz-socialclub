@@ -3,7 +3,7 @@ class Competition < ActiveRecord::Base
   has_many :teams
   
   def popular_teams
-    teams
+    teams.sort_by{|team| [ -team.total_score, team.name]}
   end
 
 end
