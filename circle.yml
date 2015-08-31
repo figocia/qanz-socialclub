@@ -5,11 +5,11 @@ deployment:
   production:
     branch: master
     commands:
-      - heroku maintenance:on --app socialclub
-      - heroku pg:backups capture --app socialclub
-      - git push git@heroku.com:socialclub.git $CIRCLE_SHA1:refs/heads/master
-      - heroku run rake db:migrate --app socialclub
-      - heroku maintenance:off --app socialclub
+      - heroku maintenance:on --app socialclub-production
+      - heroku pg:backups capture --app socialclub-production
+      - git push git@heroku.com:socialclub-production.git $CIRCLE_SHA1:refs/heads/master
+      - heroku run rake db:migrate --app socialclub-production
+      - heroku maintenance:off --app socialclub-production
   staging:
     branch: staging
     commands:
