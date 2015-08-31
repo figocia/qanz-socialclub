@@ -8,15 +8,19 @@ describe Team do
   let!(:competition) { Fabricate(:competition) }
   let!(:team1) { Fabricate(:team, competition: competition ) }
   let!(:team2) { Fabricate(:team, competition: competition ) }
+  let!(:team3) { Fabricate(:team, competition: competition ) }
   let!(:game1) { Fabricate(:game, competition: competition, team_one: team1, team_two: team2, team_one_score: 10, team_two_score: 2) }
   let!(:game2) { Fabricate(:game, competition: competition, team_one: team1, team_two: team2, team_one_score: 10, team_two_score: 2) }
-  let!(:game3) { Fabricate(:game, competition: competition, team_one: team2, team_two: team1, team_one_score: 2, team_two_score: 10) }
+  let!(:game3) { Fabricate(:game, competition: competition, team_one: team3, team_two: team1, team_one_score: 30, team_two_score: 10) }
   
   describe '#is_first' do
     it 'return true when team rank first in the competition' do
       expect(team1.is_first).to be true
     end
 
+    it 'return true for the second team with the same score' do
+      expect(team3.is_first).to be true
+    end
     it 'return false when team rank not first' do
       expect(team2.is_first).not_to be true
     end

@@ -13,10 +13,10 @@ class Team < ActiveRecord::Base
     home_score = home_scores.size > 0 ? home_scores.inject(:+) : 0
     away_score = away_scores.size > 0 ? away_scores.inject(:+) : 0
 
-    home_score + away_score    
+    home_score + away_score
   end
 
   def is_first
-    self == competition.popular_teams.first
+    self.total_score == competition.popular_teams.first.total_score
   end
 end

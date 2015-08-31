@@ -16,7 +16,8 @@
           -competition.popular_teams.each do |team|          
             %tr
               %td
-                %img(src="/tmp/cup.png" style="width: 25px; height: 25px;")
+                - if team.is_first
+                  %img(src="/tmp/cup.png" style="width: 25px; height: 25px;")
               %td
                 = team.name
               %td
