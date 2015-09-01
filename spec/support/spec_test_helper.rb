@@ -6,7 +6,7 @@ module SpecTestHelper
   end
 
   def current_user
-    User.find(request.session[:user_id])
+    User.find(request.session[:user_id]) if request.session[:user_id]
   end
 
   def login_current_user

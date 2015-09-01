@@ -30,4 +30,17 @@ describe SessionsController do
       expect(response).to redirect_to login_path
     end
   end
+
+  describe 'GET Destroy' do
+    before { login_current_user }
+    it 'redirects to root path' do      
+      get :destroy
+      expect(response).to redirect_to root_path
+    end
+
+    it 'logs out the user' do
+      get :destroy
+      expect(current_user).to be nil
+    end
+  end
 end
