@@ -7,11 +7,14 @@
     = csrf_meta_tag
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
+    = yield :head
   %body
+
     .container
       %header
         = render 'shared/header'
       %section.content.clearfix        
-      = yield
+        
+        = yield      
       %footer 
-        &copy right 2015
+        &copy #{this_year} Quintiq-SocialClub        
