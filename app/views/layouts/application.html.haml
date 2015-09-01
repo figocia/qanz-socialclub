@@ -13,8 +13,9 @@
     .container
       %header
         = render 'shared/header'
-      %section.content.clearfix        
-        
+      %section.content.clearfix
+
+        = render 'shared/messages'
         = yield      
-      %footer 
+      %footer
         &copy #{this_year} Quintiq-SocialClub        

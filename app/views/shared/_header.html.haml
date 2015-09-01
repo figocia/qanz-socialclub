@@ -2,38 +2,38 @@
   %nav.navbar.navbar-default
     .container-fluid
       .navbar-header
-        %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
-          %span.sr-only Toggle navigation
-          %span.icon-bar
-          %span.icon-bar
-          %span.icon-bar
-        %a.navbar-brand{:href => "/home"} QANZ Social Club
-      #bs-example-navbar-collapse-1.collapse.navbar-collapse
-        %ul.nav.navbar-nav
-          %li
-            = link_to 'Competition', games_path
-          %li
-            = link_to 'leader Board', leaderboard_path  
-            
-          %li
-            %a{:href => "#"} Social Events
-          %li.dropdown
-            %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-              Manage content
-              %span.caret
-            %ul.dropdown-menu{:role => "menu"}
-              %li
-                %a{:href => "#"} Action
-              %li
-                %a{:href => "#"} Another action
-              %li
-                %a{:href => "#"} Something else here
-              %li.divider
-              %li
-                %a{:href => "#"} Separated link
-              %li.divider
-              %li
-                %a{:href => "#"} One more separated link        
+        = link_to 'QANZ Social Club', logged_in? ? home_path : root_path, class: 'navbar-brand'        
+      - if logged_in?
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          %ul.nav.navbar-nav
+            %li
+              = link_to 'Competition', games_path
+            %li
+              = link_to 'leader Board', leaderboard_path  
+              
+            %li
+              %a{:href => "#"} Social Events
+            %li.dropdown
+              %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                Manage content
+                %span.caret
+              %ul.dropdown-menu{:role => "menu"}
+                %li
+                  %a{:href => "#"} Action
+                %li
+                  %a{:href => "#"} Another action
+                %li
+                  %a{:href => "#"} Something else here
+                %li.divider
+                %li
+                  %a{:href => "#"} Separated link
+                %li.divider
+                %li
+                  %a{:href => "#"} One more separated link        
+          %ul.nav.navbar-nav.navbar-right
+            %li
+              %a{:href => "#"} Log out
+      - else
         %ul.nav.navbar-nav.navbar-right
           %li
-            %a{:href => "#"} Log out
+            = link_to 'Sign in', login_path
