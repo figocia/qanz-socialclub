@@ -1,10 +1,18 @@
 class SessionsController < ApplicationController
   
   def new
-    
+    redirect_to home_path if logged_in?
   end
 
   def create
-    
+    user = User.find_by(email: params[:email])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      flash[:notice] = 'Welcome, you have logged in.'
+      redirect_to home_path
+    else
+      flash[:error] = 'Username or password does not match.'
+      redirect_to login_path
+    end
   end
 end
