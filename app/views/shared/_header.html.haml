@@ -30,9 +30,19 @@
                 %li.divider
                 %li
                   %a{:href => "#"} One more separated link        
+          
           %ul.nav.navbar-nav.navbar-right
-            %li
-              %a{:href => "#"} Log out
+            %li.dropdown
+              %a(href="#" id="dlabel" role="button" data-toggle="dropdown" class="dropdown-toggle" data-target="#")
+                Welcome, #{current_user.name}
+                %b.caret
+              %ul.dropdown-menu(role="menu" aria-labelledby="dlabel")
+                %li
+                  %a(href="#") Reset password
+                  %a(href="#") Plan and Billing
+                  
+                  
+                  = link_to 'Sign out', logout_path            
       - else
         %ul.nav.navbar-nav.navbar-right
           %li

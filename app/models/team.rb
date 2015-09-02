@@ -19,4 +19,8 @@ class Team < ActiveRecord::Base
   def is_first
     self.total_score == competition.popular_teams.first.total_score
   end
+
+  def include_member(user=nil)
+    members.include?(user)
+  end
 end

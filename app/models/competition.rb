@@ -6,4 +6,7 @@ class Competition < ActiveRecord::Base
     teams.sort_by{|team| [ -team.total_score, team.name]}
   end
 
+  def games_for_member(user=nil)
+    
+  end
 end

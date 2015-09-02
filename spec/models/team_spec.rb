@@ -34,4 +34,19 @@ describe Team do
     end
   end
 
+
+  describe '#include_member' do
+    let(:alice) {  Fabricate(:user) }
+    let(:tony ) { Fabricate(:user) }
+    let!(:team_member) { Fabricate(:team_member, team: team1, member: alice) }
+    it 'returns true if member is a team member' do      
+      
+      expect(team1.include_member(alice)).to be true
+    end
+
+    it 'returns false if member is not a team member' do      
+      
+      expect(team1.include_member(tony)).not_to be true
+    end
+  end
 end
