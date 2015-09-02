@@ -43,8 +43,8 @@ describe Competition do
       team_member3 = Fabricate(:team_member, team: team2, member: tony)
       team_member4 = Fabricate(:team_member, team: team2, member: alex )
 
-      team_member5 = Fabricate(:team_member, team: team3, member: alice)
-      team_member6 = Fabricate(:team_member, team: team3, member: figo )
+      team_member5 = Fabricate(:team_member, team: team3, member: user3)
+      team_member6 = Fabricate(:team_member, team: team3, member: user4 )
 
       team_member7 = Fabricate(:team_member, team: team4, member: user1)
       team_member8 = Fabricate(:team_member, team: team4, member: user2 )
@@ -54,7 +54,7 @@ describe Competition do
       game3 = Fabricate(:game, competition: competition, team_one: team1, team_two: team4, team_one_score: 2, team_two_score: 10, created_at: 3.day.ago)
       game4 = Fabricate(:game, competition: competition, team_one: team2, team_two: team1, team_one_score: 2, team_two_score: 10, created_at: 4.day.ago)
 
-      expect(competition.games_for_member(figo)).to eq([game4, game3, game1])
+      expect(competition.games_for_member(figo)).to eq([game1, game3, game4])
     end
   end
 

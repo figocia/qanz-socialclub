@@ -9,7 +9,12 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
 
-  resources :games, only: [:index, :show ]
+  resources :games, only: [:index, :show ] do
+    collection do
+      get 'my_games'
+    end
+  end
+
   resources :teams, only: [:index, :show ]
 
 end

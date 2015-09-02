@@ -1,0 +1,6 @@
+- @competitions.each do |competition|
+  .competition 
+    %h2 
+      = competition.name
+
+  = render competition.games

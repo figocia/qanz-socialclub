@@ -7,6 +7,6 @@ class Competition < ActiveRecord::Base
   end
 
   def games_for_member(user=nil)
-    
+    games.select{|game| game.include_member?(user)}
   end
 end
