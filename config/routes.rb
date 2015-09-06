@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: 'pages#front'
 
   get 'ui(/:action)', controller: 'ui'
-  get '/home', to: 'games#index'
+  get '/home', to: 'pages#home'
   get '/leaderboard', to: 'teams#index'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :competitions, only: :show
   resources :teams, only: [:index, :show ]
 
 end
