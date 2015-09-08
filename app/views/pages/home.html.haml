@@ -1,0 +1,9 @@
+.home
+  %h1 Competitions
+  .home.competition-group
+    - @competitions.each do |competition|
+      .home.competition      
+        = link_to "#{competition.name}", competition_path(competition), class: 'btn btn-primary btn-homepage btn-lg btn-block'
+.home
+  
+  %h1 Events

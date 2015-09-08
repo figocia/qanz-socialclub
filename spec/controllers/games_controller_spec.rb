@@ -40,6 +40,8 @@ describe GamesController do
       it_behaves_like 'require_sign_in' do
         let(:action) { get :my_games }
       end
-    end
+    end    
   end
+
+  describe 'POST Update_score'
 end
