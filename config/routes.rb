@@ -7,13 +7,9 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
+  get '/my_games', to: 'games#my_games'
 
-
-  resources :games, only: [:index, :show, :update ] do
-    collection do
-      get 'my_games'
-    end
-  end
+  resources :games, only: [:index, :show, :update ]
 
   resources :competitions, only: :show
   resources :teams, only: [:index, :show ]

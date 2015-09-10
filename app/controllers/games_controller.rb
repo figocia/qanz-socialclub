@@ -8,4 +8,16 @@ class GamesController < ApplicationController
   def my_games
     @competitions = Competition.where(is_finished: false).order('created_at DESC')
   end
+
+  def update
+    
+    @game = Game.find(params[:id])
+    
+  end
+
+  private 
+
+  def update_item
+    
+  end
 end
