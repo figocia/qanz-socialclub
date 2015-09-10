@@ -56,7 +56,7 @@ describe GamesController do
     
     context 'not sign in' do
       it_behaves_like 'require_sign_in' do
-        let(:action) { patch :game, id: game.id}
+        let(:action) { patch :update, id: game.id}
       end
     end
 
