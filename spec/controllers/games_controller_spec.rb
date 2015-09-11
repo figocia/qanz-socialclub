@@ -46,11 +46,11 @@ describe GamesController do
   describe 'PATCH Update' do
 
     let(:game) { Fabricate(:game)}
-    let(:alice) { Fabricate(:user)}
-    let(:jason) { Fabricate(:user)}
-    let(:tony) { Fabricate(:user)}
-    let(:member1) { Fabricate(:team_member, team: game.team_one, member: alice)}
-    let(:member1) { Fabricate(:team_member, team: game.team_two, member: tony)}
+    let(:alice) { Fabricate(:user, name: 'alice')}
+    let(:jason) { Fabricate(:user, name: 'jason')}
+    let(:tony) { Fabricate(:user, name: 'tony')}
+    let!(:member1) { Fabricate(:team_member, team: game.team_one, member: alice)}
+    let!(:member2) { Fabricate(:team_member, team: game.team_two, member: tony)}
 
     before { login(alice) }
     
@@ -62,7 +62,8 @@ describe GamesController do
 
     context 'with valid input' do
       it 'updates the games correctly' do
-        patch :update, game:{team_one_score: 10, team_two_score: 2}, id: game.id
+        xhr :patch, :update, game:{team_one_score: 10, team_two_score: 2}, id: game.id
+        game.reload
         expect([game.team_one_score, game.team_two_score]).to eq([10, 2 ])
       end
         
@@ -70,12 +71,14 @@ describe GamesController do
 
     context 'with invalid input' do
       it 'does not update the game when number is negative' do
-        patch :update, game:{team_one_score: -1, team_two_score: 2}, id: game.id
+        xhr :patch, :update, game:{team_one_score: -1, team_two_score: 2}, id: game.id
+        game.reload
         expect([game.team_one_score, game.team_two_score]).to eq([0, 0 ])  
       end
 
       it 'does not update the game when decimal provided' do
-        patch :update, game:{team_one_score: 10.1, team_two_score: 2}, id: game.id
+        xhr :patch, :update, game:{team_one_score: 10.1, team_two_score: 2}, id: game.id
+        game.reload
         expect([game.team_one_score, game.team_two_score]).to eq([0, 0 ])  
       end      
     end
@@ -84,11 +87,13 @@ describe GamesController do
       before { login(jason) }
       it 'redirect to my games path' do
         patch :update, game:{team_one_score: 10, team_two_score: 2}, id: game.id
+        game.reload
         expect(response).to redirect_to my_games_path
       end
       
       it 'does not update the game' do
         patch :update, game:{team_one_score: 10, team_two_score: 2}, id: game.id
+        game.reload
         expect([game.team_one_score, game.team_two_score]).to eq([0, 0 ])  
       end
     end
