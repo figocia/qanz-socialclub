@@ -9,4 +9,5 @@ class Game < ActiveRecord::Base
   def include_member?(user)
     team_one.include_member?(user) || team_two.include_member?(user)
   end
+
 end

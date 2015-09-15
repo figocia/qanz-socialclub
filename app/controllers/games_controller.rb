@@ -9,11 +9,15 @@ class GamesController < ApplicationController
     @competitions = Competition.where(is_finished: false).order('created_at DESC')
   end
 
-  def update
-    
+  def edit
     @game = Game.find(params[:id])
+  end
+  
+  def update    
+    @game = Game.find(params[:id])
+
     respond_to do |format|
-      if update_scores(@game, game_params)
+      if update_scores(@game, game_params)        
         format.json { head :no_content }
         format.js 
         format.html { redirect_to my_games_path }           
@@ -36,10 +40,11 @@ class GamesController < ApplicationController
   def update_scores(game, game_params)
     # require 'pry'; binding.pry
     if game.include_member?(current_user)
-      game.update_attributes(game_params)  
-    end        
+      game.update_attributes(game_params)
+    end
     
   end
+
 
   def game_params
     params.require(:game).permit(:team_one_score, :team_two_score)

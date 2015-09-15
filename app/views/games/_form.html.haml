@@ -1,0 +1,11 @@
+.well
+  = form_for @game, remote: true do |f|        
+    #error_explanation.bg-danger.text-danger
+    .control-group.update-score-fieldset
+      = f.label "#{@game.team_one.name}"
+      = f.number_field :team_one_score
+    .control-group.update-score-fieldset
+      = f.label "#{@game.team_two.name}"
+      = f.number_field :team_two_score          
+    .form-group.action
+      = f.submit 'Update Scores', class: 'btn btn-primary'

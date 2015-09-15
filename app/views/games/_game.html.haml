@@ -1,4 +1,4 @@
-.container.round
+.container.round{id: "game_#{game.id}"}
   .row       
     .col-md-4
       .panel.panel-primary.panel-fix-height
@@ -22,7 +22,7 @@
 
     .col-md-3.vs
       %h1
-        = "#{game.team_two_score.to_s} : #{game.team_two_score.to_s}"
+        = "#{game.team_one_score.to_s} : #{game.team_two_score.to_s}"
       %h2 
         = game.round
       .vs-img
@@ -52,4 +52,4 @@
         .col-md-2
           = link_to "Send Reminder to all", nil, class: "btn btn-default"                
       .col-md-2
-        = link_to 'Update Result', nil, class: "btn btn-success"
+        = link_to 'Update Result', edit_game_path(game), remote: true,  class: "btn btn-success"
