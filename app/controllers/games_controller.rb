@@ -47,7 +47,7 @@ class GamesController < ApplicationController
 
 
   def game_params
-    params.require(:game).permit(:team_one_score, :team_two_score)
+    params.require(:game).permit(:team_one_score, :team_two_score, :is_finished)
   end
   
 end

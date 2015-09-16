@@ -6,6 +6,9 @@
       = f.number_field :team_one_score
     .control-group.update-score-fieldset
       = f.label "#{@game.team_two.name}"
-      = f.number_field :team_two_score          
+      = f.number_field :team_two_score  
+    .control-group.update-score-fieldset
+      = f.label :is_finished
+      = f.check_box :is_finished  
     .form-group.action
       = f.submit 'Update Scores', class: 'btn btn-primary'

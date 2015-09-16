@@ -61,11 +61,18 @@ describe GamesController do
     end
 
     context 'with valid input' do
-      it 'updates the games correctly' do
+      it 'updates the scores correctly' do
         xhr :patch, :update, game:{team_one_score: 10, team_two_score: 2}, id: game.id
         game.reload
         expect([game.team_one_score, game.team_two_score]).to eq([10, 2 ])
       end
+
+      it 'updates the is_finished correctly' do
+        xhr :patch, :update, game:{team_one_score: 10, team_two_score: 2, is_finished: true}, id: game.id
+        game.reload
+        expect(game.is_finished).to be true
+      end
+
         
     end
 
