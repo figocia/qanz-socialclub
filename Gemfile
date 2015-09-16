@@ -25,6 +25,11 @@ group :development, :test do
   gem 'pry-nav'
   gem 'spring' # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'sqlite3'
+
+end
+
+group :development do
+  gem 'letter_opener'
 end
 
 group :test do

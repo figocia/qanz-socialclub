@@ -40,7 +40,9 @@ class GamesController < ApplicationController
   def update_scores(game, game_params)
     # require 'pry'; binding.pry
     if game.include_member?(current_user)
-      game.update_attributes(game_params)
+      if game.update_attributes(game_params)
+        AppMailer.update_score_notification(current_user, game).deliver
+      end
     end
     
   end

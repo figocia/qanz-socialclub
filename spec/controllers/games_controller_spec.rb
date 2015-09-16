@@ -53,7 +53,8 @@ describe GamesController do
     let!(:member2) { Fabricate(:team_member, team: game.team_two, member: tony)}
 
     before { login(alice) }
-    
+    after { ActionMailer::Base.deliveries.clear }
+
     context 'not sign in' do
       it_behaves_like 'require_sign_in' do
         let(:action) { patch :update, id: game.id}
@@ -73,6 +74,12 @@ describe GamesController do
         expect(game.is_finished).to be true
       end
 
+      it 'sends out the notification email' do
+        xhr :patch, :update, game:{team_one_score: 10, team_two_score: 2, is_finished: true}, id: game.id
+        game.reload
+        expect(ActionMailer::Base.deliveries).not_to eq([])
+      end
+
         
     end
 
@@ -87,6 +94,12 @@ describe GamesController do
         xhr :patch, :update, game:{team_one_score: 10.1, team_two_score: 2}, id: game.id
         game.reload
         expect([game.team_one_score, game.team_two_score]).to eq([0, 0 ])  
+      end      
+
+      it 'does not send out the notification email' do
+        xhr :patch, :update, game:{team_one_score: 10.1, team_two_score: 2}, id: game.id
+        expect(ActionMailer::Base.deliveries).to eq([])
+        
       end      
     end
 
@@ -103,6 +116,12 @@ describe GamesController do
         game.reload
         expect([game.team_one_score, game.team_two_score]).to eq([0, 0 ])  
       end
+
+      it 'does not send out the notification email' do
+        patch :update, game:{team_one_score: 10, team_two_score: 2}, id: game.id
+        expect(ActionMailer::Base.deliveries).to eq([])
+        
+      end      
     end
   end
 end
