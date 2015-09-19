@@ -14,8 +14,9 @@
           .row    
             %h4
               = event.time.strftime("%F at %I:%M%p")
-        %p 
-          = event.description        
+        .description
+          %p 
+            = event.description        
 
   .container                
     .map
@@ -25,19 +26,21 @@
       %a.btn.btn-success(href="") Pay for this event($20)  
 
 / the handle attribute here need to be different, otherwise will always refer to the last map
-:javascript
-  handler#{event.id} = Gmaps.build("Google");
-  handler#{event.id}.buildMap({ provider: {}, internal: {id: "map#{event.id}"}}, function(){
-    markers = handler#{event.id}.addMarkers([
-      {
-        "lat": #{event.latitude},
-        "lng": #{event.longitude},        
-        "infowindow": "#{event.name}",        
-      }
-    ]);
-    handler#{event.id}.bounds.extendWith(markers);
-    handler#{event.id}.fitMapToBounds();
-    handler#{event.id}.getMap().setZoom(14);
-    
 
-  });
+
+:javascript 
+  handler#{event.id} = Gmaps.build("Google");
+    handler#{event.id}.buildMap({ provider: {}, internal: {id: "map#{event.id}"}}, function(){
+      markers = handler#{event.id}.addMarkers([
+        {
+          "lat": #{event.latitude},
+          "lng": #{event.longitude},        
+          "infowindow": "#{event.name}",        
+        }
+      ]);
+      handler#{event.id}.bounds.extendWith(markers);
+      handler#{event.id}.fitMapToBounds();
+      handler#{event.id}.getMap().setZoom(14);
+      
+
+    });
