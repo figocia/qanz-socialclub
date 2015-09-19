@@ -17,6 +17,7 @@ gem 'autoprefixer-rails'
 gem 'bcrypt-ruby'
 gem 'figaro',               '1.0.0'
 gem 'gmaps4rails'
+gem 'geocoder'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'

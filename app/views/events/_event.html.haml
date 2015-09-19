@@ -1,0 +1,27 @@
+%article.event
+  .container
+    .row
+      .col-sm-7
+        %img(src="http://dummyimage.com/665x375/000000/00a2ff")
+      .event_info.col-sm-3
+        %header
+          %h3 The Bournce
+          %span.badge 15 People coming
+          %span
+            = event.time
+        %p 
+          = event.description
+        .actions
+          %a.btn.btn-primary(href="") Join Social Club Now!!
+          %a.btn.btn-success(href="") Pay for this event($20)
+
+  .container            
+    .row        
+      %h4 
+        = "Address: #{event.address}"
+        = "Latitude: #{event.latitude}"
+        = "Longtitude: #{event.longtitude}"
+    .map
+      %img(src="http://dummyimage.com/665x375/000000/00a2ff")
+    
+
