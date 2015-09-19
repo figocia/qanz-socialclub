@@ -3,6 +3,7 @@ class PagesController < ApplicationController
   
   def home
     @competitions = Competition.order('is_finished, created_at DESC').all
+    @events = Event.where("time > ?", 1.day.ago ).order('time')
   end
 
   def front

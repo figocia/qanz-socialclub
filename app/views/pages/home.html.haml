@@ -7,3 +7,7 @@
 .home
   
   %h1 Events
+  .home.event-group
+    - @events.each do |event|
+      .home.competition      
+        = link_to "#{event.name} on #{event.time.to_date}", event_path(event), class: 'btn btn-success btn-homepage btn-lg btn-block'
