@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Event do
   
   it { should have_many(:event_participants) }
-
+  it { should have_many(:participants).through(:event_participants) }
 
   let(:member) { Fabricate(:member)}
   let(:non_member) { Fabricate(:user)}

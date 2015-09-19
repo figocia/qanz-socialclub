@@ -56,17 +56,43 @@ user13 = User.create(name: 'Jemma', email: 'yufei13.chen@3ds.com', is_member: fa
 user14 = User.create(name: 'Loris', email: 'yufei14.chen@3ds.com', is_member: false, password: '12345' )
 
 
-team_member1 = TeamMember.create(team: team1, member: user1)
-team_member2 = TeamMember.create(team: team1, member: user2)
-team_member3 = TeamMember.create(team: team1, member: user3)
-team_member4 = TeamMember.create(team: team1, member: user4)
-team_member5 = TeamMember.create(team: team2, member: user5)
-team_member6 = TeamMember.create(team: team2, member: user6)
-team_member7 = TeamMember.create(team: team2, member: user7)
-team_member8 = TeamMember.create(team: team2, member: user8)
-team_member9 = TeamMember.create(team: team3, member: user9)
-team_member10 = TeamMember.create(team: team3, member: user10)
-team_member11 = TeamMember.create(team: team3, member: user11)
-team_member12 = TeamMember.create(team: team3, member: user12)
-team_member13 = TeamMember.create(team: team4, member: user13)
-team_member14 = TeamMember.create(team: team4, member: user14)
+TeamMember.create(team: team1, member: user1)
+TeamMember.create(team: team1, member: user2)
+TeamMember.create(team: team1, member: user3)
+TeamMember.create(team: team1, member: user4)
+TeamMember.create(team: team2, member: user5)
+TeamMember.create(team: team2, member: user6)
+TeamMember.create(team: team2, member: user7)
+TeamMember.create(team: team2, member: user8)
+TeamMember.create(team: team3, member: user9)
+TeamMember.create(team: team3, member: user10)
+TeamMember.create(team: team3, member: user11)
+TeamMember.create(team: team3, member: user12)
+TeamMember.create(team: team4, member: user13)
+TeamMember.create(team: team4, member: user14)
+
+
+
+
+
+# EVENT 
+
+event1 = Event.create(name: 'SocialClub Lunch', time: 1.day.from_now, address: '417 St kilda Road, Melbourne', description: "you will be serve with Lobster...")
+event2 = Event.create(name: 'SocialClub End of year event', time: 60.day.from_now, address: '417 St kilda Road, Melbourne', description: "you will be serve with Lobster again!!...")
+
+EventParticipant.create(event: event1, participant: user1)
+EventParticipant.create(event: event1, participant: user2)
+EventParticipant.create(event: event1, participant: user3)
+EventParticipant.create(event: event1, participant: user4)
+EventParticipant.create(event: event1, participant: user5)
+
+EventParticipant.create(event: event2, participant: user2)
+EventParticipant.create(event: event2, participant: user3)
+EventParticipant.create(event: event2, participant: user4)
+EventParticipant.create(event: event2, participant: user5)
+EventParticipant.create(event: event2, participant: user6)
+
+
+
+
+
