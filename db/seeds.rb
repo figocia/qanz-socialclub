@@ -12,6 +12,8 @@ User.delete_all
 Game.delete_all
 Team.delete_all
 TeamMember.delete_all
+Event.delete_all
+EventParticipant.delete_all
 
 competition2015 = Competition.create(name: '2015 Foosball Competition')
 competition2014 = Competition.create(name: '2014 Foosball Competition', is_finished: true)

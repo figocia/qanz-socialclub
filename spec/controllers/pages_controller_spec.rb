@@ -22,4 +22,13 @@ describe PagesController do
       end
     end
   end
+
+  describe 'GET Front' do
+    before {login_current_user }
+    it 'redirect to home path when signed in' do
+      get :front
+      expect(response).to redirect_to home_path
+    end
+  end
+
 end

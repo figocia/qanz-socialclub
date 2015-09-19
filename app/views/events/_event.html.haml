@@ -20,8 +20,21 @@
       %h4 
         = "Address: #{event.address}"
         = "Latitude: #{event.latitude}"
-        = "Longtitude: #{event.longtitude}"
+        = "Longitude: #{event.longitude}"
     .map
-      %img(src="http://dummyimage.com/665x375/000000/00a2ff")
-    
+      %div{id: "map#{event.id}", class: 'gmaps4rails_map', style: 'width: 665px; height: 375px'}
 
+/ the handle attribute here need to be different, otherwise will always refer to the last map
+:javascript
+  handler#{event.id} = Gmaps.build("Google");
+  handler#{event.id}.buildMap({ provider: {}, internal: {id: "map#{event.id}"}}, function(){
+    markers = handler#{event.id}.addMarkers([
+      {
+        "lat": #{event.latitude},
+        "lng": #{event.longitude},        
+        "infowindow": "#{event.name}",        
+      }
+    ]);
+    handler#{event.id}.bounds.extendWith(markers);
+    handler#{event.id}.fitMapToBounds();
+  });
