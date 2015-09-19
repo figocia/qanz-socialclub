@@ -3,27 +3,29 @@
     .row
       .col-sm-7
         %img(src="http://dummyimage.com/665x375/000000/00a2ff")
+        .map
+          %div{id: "map#{event.id}", class: 'gmaps4rails_map', style: 'width: 665px; height: 375px'}
+        .actions
+          %a.btn.btn-primary(href="") Join Social Club Now!!
+          %a.btn.btn-success(href="") Pay for this event($20)  
       .event_info.col-sm-3
         %header
           %h3 The Bournce
           %span.badge 15 
           People coming
-          .row        
-            %h4 
-              = "Address: #{event.address}"        
-          .row    
-            %h4
-              = event.time.strftime("%F at %I:%M%p")
-        .description
+        .row        
+          %h4 
+            = "Address: #{event.address}"        
+        .row    
+          %h4
+            = event.time.strftime("%F at %I:%M%p")
+        .row.description 
+          %h4 Description:        
           %p 
-            = event.description        
+            = event.description
 
-  .container                
-    .map
-      %div{id: "map#{event.id}", class: 'gmaps4rails_map', style: 'width: 665px; height: 375px'}
-    .actions
-      %a.btn.btn-primary(href="") Join Social Club Now!!
-      %a.btn.btn-success(href="") Pay for this event($20)  
+                  
+    
 
 / the handle attribute here need to be different, otherwise will always refer to the last map
 
