@@ -6,7 +6,8 @@
         .map
           %div{id: "map#{event.id}", class: 'gmaps4rails_map', style: 'width: 665px; height: 375px'}
         .actions
-          %a.btn.btn-primary(href="") Join Social Club Now!!
+          = link_to "I'm coming", event_participants_path(event_id: event.id), method: 'post', class: "btn btn-primary" 
+          
           %a.btn.btn-success(href="") Pay for this event($20)  
       .event_info.col-sm-3
         %header

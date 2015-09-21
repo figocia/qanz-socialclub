@@ -17,7 +17,7 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
 
     respond_to do |format|
-      if update_scores(@game, game_params)        
+      if update_scores(@game, game_params)
         format.json { head :no_content }
         format.js 
         format.html { redirect_to my_games_path }           

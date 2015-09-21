@@ -7,3 +7,5 @@ end
 Fabricator(:member, from: :user) do
   is_member true
 end
+
+Fabricator(:participant, from: :user) 

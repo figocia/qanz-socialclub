@@ -42,7 +42,7 @@ game8 = Game.create(round: 'Round4', competition: competition2015, team_one: tea
 
 
 
-user1 = User.create(name: 'Figo', email: 'yufei1.chen@3ds.com', is_member: false, password: '12345' )
+user1 = User.create(name: 'Figo', email: 'yufei1.chen@3ds.com', is_member: true, password: '12345' )
 user2 = User.create(name: 'Alice', email: 'yufei2.chen@3ds.com', is_member: false, password: '12345' )
 user3 = User.create(name: 'Bob', email: 'yufei3.chen@3ds.com', is_member: false, password: '12345' )
 user4 = User.create(name: 'Yufei', email: 'yufei4.chen@3ds.com', is_member: false, password: '12345' )
@@ -82,17 +82,17 @@ TeamMember.create(team: team4, member: user14)
 event1 = Event.create(name: 'SocialClub Lunch', time: 1.day.from_now, address: '417 St kilda Road, Melbourne', description: "you will be serve with Lobster...jo fai o aisjdoijff\naoisjdofijaoi\naoisdjofaijsodifjaosijd\naoisjdfoaijs")
 event2 = Event.create(name: 'SocialClub End of year event', time: 60.day.from_now, address: '417 St kilda Road, Melbourne', description: "you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...")
 
-EventParticipant.create(event: event1, participant: user1)
-EventParticipant.create(event: event1, participant: user2)
-EventParticipant.create(event: event1, participant: user3)
-EventParticipant.create(event: event1, participant: user4)
-EventParticipant.create(event: event1, participant: user5)
+# EventParticipant.create(event: event1, participant: user1)
+# EventParticipant.create(event: event1, participant: user2)
+# EventParticipant.create(event: event1, participant: user3)
+# EventParticipant.create(event: event1, participant: user4)
+# EventParticipant.create(event: event1, participant: user5)
 
-EventParticipant.create(event: event2, participant: user2)
-EventParticipant.create(event: event2, participant: user3)
-EventParticipant.create(event: event2, participant: user4)
-EventParticipant.create(event: event2, participant: user5)
-EventParticipant.create(event: event2, participant: user6)
+# EventParticipant.create(event: event2, participant: user2)
+# EventParticipant.create(event: event2, participant: user3)
+# EventParticipant.create(event: event2, participant: user4)
+# EventParticipant.create(event: event2, participant: user5)
+# EventParticipant.create(event: event2, participant: user6)
 
 
 

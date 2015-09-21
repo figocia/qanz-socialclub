@@ -13,7 +13,7 @@ describe EventsController do
       'longitude'    => -74.0059731,
       'address'      => 'New York, NY, USA',
       'state'        => 'New York',
-      'state_code'   => 'NY',
+      'state_code'   => 'NY', 
       'country'      => 'United States',
       'country_code' => 'US'
     }
@@ -43,9 +43,8 @@ describe EventsController do
       get :show, id: party.id
       expect(assigns(:event)).to eq(party)
     end
-
-
-
   end
+
+  
 
 end
