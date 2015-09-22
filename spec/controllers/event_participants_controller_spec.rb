@@ -49,7 +49,7 @@ describe EventParticipantsController do
       it 'redirects back if event already been added to the user' do
         event_participant = Fabricate(:event_participant, participant: current_user, event: golden_friday )
         post :create, event_id: golden_friday.id
-        expect(response).to redirect_to :back
+        expect(flash[:notice]).to be_present
       end
 
     end
@@ -59,6 +59,6 @@ describe EventParticipantsController do
         let(:action) { post :create, event_id: golden_friday.id }
       end
     end
-      
+
   end
 end

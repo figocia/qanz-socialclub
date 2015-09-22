@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true, uniqueness: true,  on: :create
   validates :password, length: {minimum: 5}, allow_nil: true
+
+  def comming_to_event?(event)
+    event.participants.include?(self)
+  end
 end
