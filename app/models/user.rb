@@ -12,4 +12,9 @@ class User < ActiveRecord::Base
   def comming_to_event?(event)
     event.participants.include?(self)
   end
+
+  def event_participant(event)
+
+    event.event_participants.select{|ep| ep.event == event}.first
+  end
 end

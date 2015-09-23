@@ -61,4 +61,19 @@ describe EventParticipantsController do
     end
 
   end
+
+
+  describe 'DELETE Destroy' do 
+    let(:golden_friday) { Fabricate(:event, address: 'New York, NY')}     
+    let!(:event_participant1) { Fabricate(:event_participant, participant: current_user, event: golden_friday )}
+    
+
+    it 'removes the user from the event' do
+      
+    end
+
+
+
+
+  end
 end
