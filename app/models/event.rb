@@ -4,4 +4,8 @@ class Event < ActiveRecord::Base
 
   geocoded_by :address
   after_validation :geocode, :if => :address_changed?
+
+  def is_free?(user)
+    !member_only or user.is_member?
+  end
 end
