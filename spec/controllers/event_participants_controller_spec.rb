@@ -69,10 +69,14 @@ describe EventParticipantsController do
     
 
     it 'removes the user from the event' do
-      
+      delete :destroy, id: event_participant1.id
+      expect(EventParticipant.count).to eq(0)
     end
 
-
+    
+    it_behaves_like 'require_sign_in' do
+      let(:action) { delete :destroy, id: event_participant1.id }
+    end
 
 
   end

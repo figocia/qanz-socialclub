@@ -17,6 +17,13 @@ class EventParticipantsController < ApplicationController
         
       end
     end
+  end
 
+  def destroy
+    item = EventParticipant.find(params[:id])
+    item.destroy unless item.nil?
+    respond_to do |format|
+      format.html { redirect_to my_events_path}      
+    end
   end
 end
