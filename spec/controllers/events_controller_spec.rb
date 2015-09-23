@@ -45,6 +45,19 @@ describe EventsController do
     end
   end
 
-  
+  describe 'GET MyEvent' do
+    let!(:party) { Fabricate(:event, time: 1.day.from_now, address: 'New York, NY') }
+    let!(:friday_lunch) { Fabricate(:event, time: 3.day.from_now, address: 'New York, NY') }
+    let!(:eoy) { Fabricate(:event, time: 4.day.from_now, address: 'New York, NY') }
+    let!(:participate) { Fabricate(:event_participant, event: friday_lunch, participant: current_user)}
+    let!(:participate2) { Fabricate(:event_participant, event: eoy, participant: current_user)}
+
+    it "returns the current_user's comming event" do
+      get :my_events
+      expect(assigns(:events)).to eq([friday_lunch, eoy])
+    end
+
+  end
+
 
 end

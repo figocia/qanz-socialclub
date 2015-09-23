@@ -12,4 +12,8 @@ class EventsController < ApplicationController
       marker.lng event.longitude
     end
   end
+
+  def my_events
+    @events = current_user.events 
+  end
 end
