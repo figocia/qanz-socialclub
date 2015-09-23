@@ -1,8 +1,9 @@
 Fabricator(:event) do
   name { "Social club Lunch" }
-  address { Faker::Address.street_name }
+  address { "New York, NY" }
   time { Faker::Date.forward(23) }
   description { Faker::Lorem.paragraph }
+  member_only { false }
   
 end
 

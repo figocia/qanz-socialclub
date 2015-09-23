@@ -1,4 +1,8 @@
 .event
   .event-title
-    %h2 My comming social club events
+    - if @events.size > 0 
+      %h2 My comming social club events
+    - else
+      %h4
+        No up comming events for you, go to the events page and pick which one you want to join.
   = render @events

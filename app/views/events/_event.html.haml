@@ -7,7 +7,7 @@
           %div{id: "map#{event.id}", class: 'gmaps4rails_map', style: 'width: 665px; height: 375px'}
         .actions{id: "event_action_#{event.id}"}
           - if current_user.comming_to_event?(event)
-            = link_to "I'm not coming",nil, class: "btn btn-warning"
+            = link_to "I'm not coming",event_participant_path(current_user.event_participant(event)), method: 'delete', class: "btn btn-warning"
           - else
 
             = link_to "I'm coming", event_participants_path(event_id: event.id), method: 'post', class: "btn btn-primary" 

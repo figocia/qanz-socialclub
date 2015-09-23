@@ -3,23 +3,7 @@ require 'rails_helper'
 describe EventsController do
   before { login_current_user }
   
-  before(:all) do 
-  Geocoder.configure(:lookup => :test)
-
-  Geocoder::Lookup::Test.add_stub(
-  "New York, NY", [
-    {
-      'latitude'     => 40.7143528,
-      'longitude'    => -74.0059731,
-      'address'      => 'New York, NY, USA',
-      'state'        => 'New York',
-      'state_code'   => 'NY', 
-      'country'      => 'United States',
-      'country_code' => 'US'
-    }
-   ]
-  )
- end
+  
   describe 'GET Index' do
     let!(:party) { Fabricate(:event, time: 1.day.from_now, address: 'New York, NY') }
     let!(:friday_lunch) { Fabricate(:event, time: 3.day.from_now, address: 'New York, NY') }
