@@ -8,4 +8,8 @@ class Event < ActiveRecord::Base
   def is_free?(user)
     !member_only or user.is_member?
   end
+  
+  def number_of_people_comming
+    participants.size
+  end
 end

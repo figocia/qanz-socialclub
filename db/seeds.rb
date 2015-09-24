@@ -79,8 +79,8 @@ TeamMember.create(team: team4, member: user14)
 
 # EVENT 
 
-event1 = Event.create(name: 'SocialClub Lunch', time: 1.day.from_now, address: '417 St kilda Road, Melbourne', description: "you will be serve with Lobster...jo fai o aisjdoijff\naoisjdofijaoi\naoisdjofaijsodifjaosijd\naoisjdfoaijs")
-event2 = Event.create(name: 'SocialClub End of year event', time: 60.day.from_now, address: '417 St kilda Road, Melbourne', description: "you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...")
+event1 = Event.create(name: 'SocialClub Lunch', member_only: true, time: 1.day.from_now, address: '417 St kilda Road, Melbourne', description: "you will be serve with Lobster...jo fai o aisjdoijff\naoisjdofijaoi\naoisdjofaijsodifjaosijd\naoisjdfoaijs")
+event2 = Event.create(name: 'SocialClub End of year event', member_only: false, time: 60.day.from_now, address: '417 St kilda Road, Melbourne', description: "you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...you will be serve with Lobster again!!...")
 
 # EventParticipant.create(event: event1, participant: user1)
 # EventParticipant.create(event: event1, participant: user2)

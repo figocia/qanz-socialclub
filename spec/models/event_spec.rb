@@ -20,10 +20,16 @@ describe Event do
         expect(member_event.is_free?(non_member)).not_to be true
       end
     end
-      
+    context 'for not member only event' do
+      it 'return true if user is a memmber' do
+        expect(free_event.is_free?(member)).to be true
+      end
+      it 'return true if user is non member ' do
+        expect(free_event.is_free?(non_member )).to be true
+      end
+    end
 
-    it 'is free if the event is not member only'
-    it 'is not free when event is for member only and user is non_member'
+    
 
   end
 end

@@ -8,15 +8,18 @@
         .actions{id: "event_action_#{event.id}"}
           - if current_user.comming_to_event?(event)
             = link_to "I'm not coming",event_participant_path(current_user.event_participant(event)), method: 'delete', class: "btn btn-warning"
+          - elsif event.is_free?(current_user)
+            = link_to "I'm coming", event_participants_path(event_id: event.id), method: 'post', class: "btn btn-primary"
           - else
 
-            = link_to "I'm coming", event_participants_path(event_id: event.id), method: 'post', class: "btn btn-primary" 
+            = link_to "Pay to come", nil, class: 'btn btn-success'
+            = link_to "Join social club", nil, class: 'btn btn-primary'
             
-            %a.btn.btn-success(href="") Pay for this event($20)  
       .event_info.col-sm-3
         %header
           %h3 The Bournce
-          %span.badge 15 
+          %span.badge 
+            = event.number_of_people_comming  
           People coming
         .row        
           %h4 
