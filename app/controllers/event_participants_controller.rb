@@ -6,7 +6,11 @@ class EventParticipantsController < ApplicationController
     new_item = EventParticipant.new(participant_id: current_user.id, event_id: params[:event_id])
     if new_item.save
       respond_to do |format|
-        format.html { redirect_to my_events_path }
+        format.html do
+          AppMailer.comming_to_event(new_item).deliver
+          redirect_to my_events_path
+        end
+          
       end
     else
       respond_to do |format|
@@ -21,7 +25,10 @@ class EventParticipantsController < ApplicationController
 
   def destroy
     item = EventParticipant.find(params[:id])
-    item.destroy unless item.nil?
+    unless item.nil? 
+      AppMailer.not_comming_to_event(item).deliver
+      item.destroy
+    end
     respond_to do |format|
       format.html { redirect_to my_events_path}      
     end

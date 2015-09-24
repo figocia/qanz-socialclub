@@ -3,30 +3,17 @@ require 'rails_helper'
 describe EventParticipantsController do 
 
   before { login_current_user }
+  
 
-  before(:all) do 
-  Geocoder.configure(:lookup => :test)
-
-  Geocoder::Lookup::Test.add_stub(
-  "New York, NY", [
-    {
-      'latitude'     => 40.7143528,
-      'longitude'    => -74.0059731,
-      'address'      => 'New York, NY, USA',
-      'state'        => 'New York',
-      'state_code'   => 'NY',   
-      'country'      => 'United States',
-      'country_code' => 'US'
-    }
-   ]
-  )
- end
+  
 
 
   describe "POST Create" do
-    let(:golden_friday) { Fabricate(:event, address: 'New York, NY')} 
-    let(:eoy) { Fabricate(:event, address: 'New York, NY')} 
-    
+    after { ActionMailer::Base.deliveries.clear }
+
+    let(:golden_friday) { Fabricate(:event)} 
+    let(:eoy) { Fabricate(:event)} 
+      
     context 'html format' do
        before do
         request.env["HTTP_REFERER"] = "where_i_came_from"
@@ -52,6 +39,11 @@ describe EventParticipantsController do
         expect(flash[:notice]).to be_present
       end
 
+      it 'sends out the notification email' do
+        post :create, event_id: golden_friday.id
+        expect(ActionMailer::Base.deliveries).not_to eq([])
+
+      end
     end
 
     context 'not sign in' do
@@ -64,13 +56,18 @@ describe EventParticipantsController do
 
 
   describe 'DELETE Destroy' do 
-    let(:golden_friday) { Fabricate(:event, address: 'New York, NY')}     
+    let(:golden_friday) { Fabricate(:event)}     
     let!(:event_participant1) { Fabricate(:event_participant, participant: current_user, event: golden_friday )}
-    
+    after { ActionMailer::Base.deliveries.clear }
 
     it 'removes the user from the event' do
       delete :destroy, id: event_participant1.id
       expect(EventParticipant.count).to eq(0)
+    end
+
+    it 'sends out email notification' do
+      delete :destroy, id: event_participant1.id
+      expect(ActionMailer::Base.deliveries).not_to eq([])
     end
 
     
