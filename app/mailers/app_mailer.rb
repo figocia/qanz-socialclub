@@ -18,4 +18,10 @@ class AppMailer < ActionMailer::Base
     @event = event_participant.event
     mail from: "#{@user.email}", to: Rails.env.staging? ? 'yufei.chen@3ds.com' : 'yufei.chen@3ds.com', subject: "#{@user.name} is comming to #{@event.name}"
   end
+
+  def join_social_club(user, event_participant=nil)
+    @user = user
+    @event = event_participant
+    mail from: "#{@user.email}", to: Rails.env.staging? ? 'yufei.chen@3ds.com' : 'yufei.chen@3ds.com', subject: event_participant.nil? ? "#{@user.name} is joining social club" : "#{@user.name} is joining socialclub and comming to #{@event.name}"
+  end
 end

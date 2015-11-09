@@ -17,4 +17,14 @@ class User < ActiveRecord::Base
 
     event.event_participants.select{|ep| ep.event == event}.first
   end
+
+  def is_member?
+    is_member    
+  end
+
+  def generate_membership_token
+    self.membership_token = SecureRandom.urlsafe_base64    
+    save    
+  end
+
 end
