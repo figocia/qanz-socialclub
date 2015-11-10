@@ -27,4 +27,14 @@ class User < ActiveRecord::Base
     save    
   end
 
+  def set_is_member(ismember)
+    self.is_member = ismember
+    save
+  end
+
+  def clear_membership_token
+    self.membership_token = nil
+    save
+  end
+
 end

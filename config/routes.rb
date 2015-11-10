@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
   get '/my_games', to: 'games#my_games'
   get '/my_events', to: 'events#my_events'
+  
   post '/join_socialclub', to: 'join_social_club#create'
+  post '/set_membership', to: 'set_membership#create'
+  get '/token_expire', to: 'set_membership#expire'
+  get '/setting_membership_successful', to: 'set_membership#success'
   
   resources :games, only: [:index, :show, :update, :edit ]
 
