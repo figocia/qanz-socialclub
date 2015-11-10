@@ -3,5 +3,9 @@
   %body
     %h2
       = @event.nil? ? "#{@user.name} is joining social club." : "#{@user.name} is joining social club and comming to the #{@event.name}"
+
+      = "Please click the following link to reset your password."
+      %p
+        = link_to "Confirming membership", confirm_membership_url(token: @user.membership_token)
     %footer
       &copy 2015 QANZ SocialClub

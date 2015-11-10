@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   get '/my_games', to: 'games#my_games'
   get '/my_events', to: 'events#my_events'
   
-  post '/join_socialclub', to: 'join_social_club#create'
-  post '/set_membership', to: 'set_membership#create'
+  
+  get '/confirm_membership', to: 'set_membership#confirm'
   get '/token_expire', to: 'set_membership#expire'
   get '/setting_membership_successful', to: 'set_membership#success'
   
@@ -22,5 +22,7 @@ Rails.application.routes.draw do
 
   resources :event_participants, only: [:create, :destroy]
   resources :events, only: [:index, :show]
+
+  resources :join_social_club, only: :create
 
 end
