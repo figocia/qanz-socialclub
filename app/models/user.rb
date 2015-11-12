@@ -27,6 +27,11 @@ class User < ActiveRecord::Base
     save    
   end
 
+  def generate_reset_password_token
+    self.reset_password_token = SecureRandom.urlsafe_base64    
+    save    
+  end
+
   def set_is_member(ismember)
     self.is_member = ismember
     save
@@ -34,6 +39,11 @@ class User < ActiveRecord::Base
 
   def clear_membership_token
     self.membership_token = nil
+    save
+  end
+
+  def clear_reset_password_token
+    self.reset_password_token = nil
     save
   end
 

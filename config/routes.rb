@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   get '/confirm_membership', to: 'set_membership#confirm'
   get '/token_expire', to: 'set_membership#expire'
   get '/setting_membership_successful', to: 'set_membership#success'
+
+  get '/confirm_email_send', to: 'forgot_password#confirm'
+  get '/reset_password', to: 'reset_password#show'
   
   resources :games, only: [:index, :show, :update, :edit ]
 
@@ -24,5 +27,8 @@ Rails.application.routes.draw do
   resources :events, only: [:index, :show]
 
   resources :join_social_club, only: :create
+
+  resources :forgot_password, only: [:create, :new]
+  resources :reset_password, only: [:create]
 
 end

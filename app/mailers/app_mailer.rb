@@ -24,4 +24,9 @@ class AppMailer < ActionMailer::Base
     @event = event_participant
     mail from: "#{@user.email}", to: Rails.env.staging? ? 'yufei.chen@3ds.com' : 'yufei.chen@3ds.com', subject: event_participant.nil? ? "#{@user.name} is joining social club" : "#{@user.name} is joining socialclub and comming to #{@event.name}"
   end
+
+  def forgot_password(user)
+    @user = user
+    mail from: 'info@qanz-socialclub.com', to: Rails.env.staging? ? 'info@qanz-socialclub.com' : user.email, subject: 'Resetting your password'
+  end
 end
