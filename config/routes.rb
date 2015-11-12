@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   get '/setting_membership_successful', to: 'set_membership#success'
 
   get '/confirm_email_send', to: 'forgot_password#confirm'
-  get '/reset_password', to: 'reset_password#show'
   
   resources :games, only: [:index, :show, :update, :edit ]
 
@@ -29,6 +28,6 @@ Rails.application.routes.draw do
   resources :join_social_club, only: :create
 
   resources :forgot_password, only: [:create, :new]
-  resources :reset_password, only: [:create]
+  resources :reset_password, only: [:create, :new]
 
 end
