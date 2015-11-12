@@ -33,7 +33,7 @@ describe ForgotPasswordController do
 
       it 'errors out' do
         post :create, email: ''
-        expect(flash[:error]).to eq('Cannot find the email in MyfFix system')
+        expect(flash[:error]).to eq('Cannot find the email in SocialClub system')
       end
     end
   end
