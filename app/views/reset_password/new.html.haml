@@ -6,6 +6,7 @@
           %header
             %h1 Reset Your Password
           = f.password_field :password, label: 'New password'
-          = f.hidden_field :reset_password_token, value: @user.reset_password_token
+          - if @set_via_email
+            = f.hidden_field :reset_password_token, value: @user.reset_password_token
 
           = f.submit 'Reset password'

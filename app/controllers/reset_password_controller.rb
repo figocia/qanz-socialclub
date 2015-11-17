@@ -1,7 +1,8 @@
 class ResetPasswordController < ApplicationController
 
   def new
-    @user = !!params[:reset_password_token] ? User.find_by(reset_password_token: params[:reset_password_token]) : current_user
+    @set_via_email = !!params[:reset_password_token]
+    @user = !!@set_via_email ? User.find_by(reset_password_token: params[:reset_password_token]) : current_user
     redirect_to token_expire_path if @user.nil?
   end
 
