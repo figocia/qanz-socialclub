@@ -11,7 +11,7 @@ describe ResetPasswordController do
     end
 
     it 'redirect to token expire path if cannot find user' do
-      get :new, reset_password_token: '1'
+      get :new, reset_password_token: nil
       expect(response).to redirect_to token_expire_path
     end
   end
@@ -44,6 +44,15 @@ describe ResetPasswordController do
         post :create, password: '123', reset_password_token: '1234' 
         expect(flash[:error]).to eq("Password must be minimun 5 character")
       end
+    end
+
+    context 'without token' do
+      it 'will reset the password for current user' do
+        login_current_user
+        post :create, password: '123456'
+        expect(current_user.authenticate('123456')).to eq(current_user)
+      end
+      
     end
   end
 end
