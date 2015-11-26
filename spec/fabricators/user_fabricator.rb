@@ -8,4 +8,8 @@ Fabricator(:member, from: :user) do
   is_member true
 end
 
+Fabricator(:admin, from: :user) do
+  is_admin true
+end
+
 Fabricator(:participant, from: :user) 
