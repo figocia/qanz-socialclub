@@ -1,7 +1,7 @@
 class Admin::BatchUsersGenerationController < AdminsController
   
   def index
-    
+    @users = User.all
   end
 
   def new    
@@ -28,5 +28,9 @@ class Admin::BatchUsersGenerationController < AdminsController
         User.create( email: email, password: '12345', name: name) unless user
       end  
     end
+  end
+
+  def udpate
+    
   end
 end

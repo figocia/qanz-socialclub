@@ -52,15 +52,16 @@ describe Admin::BatchUsersGenerationController do
   end
 
   describe 'GET Index' do
-    let(:alice) { Fabricate(:user) }
+    let!(:alice) { Fabricate(:user) }
+    let!(:tony) { Fabricate(:user) }
     it_behaves_like 'require_admin' do
-      let(:action) { post :create }      
+      let(:action) { get :index }      
     end
 
     it 'have the right users assign' do
       login_admin
       get :index
-      expect(@users.size).to eq(2)
+      expect(assigns(:users).size).to eq(3)
     end
   end
 end
