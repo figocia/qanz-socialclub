@@ -31,6 +31,6 @@ Rails.application.routes.draw do
   resources :reset_password, only: [:create, :new]
   
   namespace :admin do
-    resources :batch_users_generation, only: [:create, :new]
+    resources :batch_users_generation, except: [:edit, :show]
   end
 end
