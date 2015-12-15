@@ -7,7 +7,12 @@ class User < ActiveRecord::Base
   has_many :events, -> { order("time")}, through: :event_participants
 
   validates :email, presence: true, uniqueness: true,  on: :create
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
+
   validates :password, length: {minimum: 5}, allow_nil: true
+  validates :is_member, :is_admin, inclusion: { in: [true, false],
+    message: "%{value} need to be either true or false" }
+
 
   def comming_to_event?(event)
     event.participants.include?(self)

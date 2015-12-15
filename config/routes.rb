@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
   get '/my_games', to: 'games#my_games'
   get '/my_events', to: 'events#my_events'
-  
+  post '/update_users', to: 'admin/batch_users_generation#update_users'
   
   get '/confirm_membership', to: 'set_membership#confirm'
   get '/setting_membership_successful', to: 'set_membership#success'
@@ -31,6 +31,6 @@ Rails.application.routes.draw do
   resources :reset_password, only: [:create, :new]
   
   namespace :admin do
-    resources :batch_users_generation, except: [:edit, :show]
+    resources :batch_users_generation, except: [:edit, :show, :update]
   end
 end

@@ -26,4 +26,8 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+
+  def valid_email?(email)
+     email =~ /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+  end
 end

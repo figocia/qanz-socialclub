@@ -64,4 +64,55 @@ describe Admin::BatchUsersGenerationController do
       expect(assigns(:users).size).to eq(3)
     end
   end
+
+  describe 'POST Update_users' do    
+    let(:alex) { Fabricate(:user) }
+    let(:tony) { Fabricate(:user) }
+    
+    it_behaves_like 'require_admin' do
+      let(:action) { post :update_users }  
+    end
+
+    context 'valid update' do      
+      before { login_admin }
+
+      it 'update the users admin status in batch successfully' do
+        post :update_users, user_datas: [{id: alex.id, is_admin: true, is_member: false }, { id: tony.id, is_admin: false, is_member: true }]
+        alex.reload
+        tony.reload
+        expect([alex.is_admin?, tony.is_admin?]).to eq([true, false])
+      end
+
+      it 'update the users member status in batch successfully' do
+        post :update_users, user_datas: [{id: alex.id, is_admin: true, is_member: false }, { id: tony.id, is_admin: false, is_member: true }]
+        alex.reload
+        tony.reload
+        expect([alex.is_member, tony.is_member]).to eq([false, true])
+      end
+
+      it 'redirect to the user index path' do
+        post :update_users, user_datas: [{id: alex.id, is_admin: true, is_member: false }, { id: tony.id, is_admin: false, is_member: true }]        
+        expect(response).to redirect_to admin_batch_users_generation_index_path
+      end
+    end
+
+    context 'invalid update' do
+      before { login_admin }
+
+      it 'errors out' do
+        post :update_users, user_datas: [{id: alex.id, is_admin: true, is_member: false }, { id: tony.id, is_admin: nil, is_member: true }]
+        expect(flash[:error]).to be_present
+      end
+
+      it 'revert back the transaction' do
+        post :update_users, user_datas: [{id: alex.id, is_admin: true, is_member: false }, { id: tony.id, is_admin: true, is_member: nil }]
+        alex.reload
+        expect(alex.is_admin).not_to be true
+      end
+    end
+
+
+
+  end
+
 end
