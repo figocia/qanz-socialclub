@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   get '/my_games', to: 'games#my_games'
   get '/my_events', to: 'events#my_events'
   post '/update_users', to: 'admin/batch_users_generation#update_users'
-  
+  post '/create_batch_users', to: 'admin/batch_users_generation#create'
+
   get '/confirm_membership', to: 'set_membership#confirm'
   get '/setting_membership_successful', to: 'set_membership#success'
 

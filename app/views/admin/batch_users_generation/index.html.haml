@@ -1,0 +1,35 @@
+%header.user_admin
+  %h2 Users Administration
+%section.user_admin.container
+  .row
+    .col-sm-10           
+      = form_tag update_users_path, method: 'post' do
+        %table.table
+          %thead
+            %tr              
+              %th(width="20%") Name
+              %th(width="30%") Email
+              %th(width="20%") Is Member
+              %th(width="15%") Is Admin
+              %th(width="15%") Remove
+          %tbody          
+            - @users.each do |user|
+          
+              %tr
+                %td
+                  = user.name
+                  = hidden_field_tag 'user_datas[][id]', "#{user.id}"
+                %td
+                  = user.email
+                %td
+                  = check_box_tag 'user_datas[][is_member]', 'true', user.is_member
+                %td
+                  = check_box_tag 'user_datas[][is_admin]', 'true', user.is_admin
+                %td           
+                  = link_to "", method: :post do
+                    %i.glyphicon.glyphicon-remove
+        .submit-buttons                        
+          .col-sm-2                                      
+            = submit_tag "Update users", class: "btn btn-default"                   
+          .col-sm-5     
+            = link_to "Create new users", new_admin_batch_users_generation_path, class: "btn btn-success"

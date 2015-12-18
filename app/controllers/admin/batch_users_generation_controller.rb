@@ -1,7 +1,7 @@
 class Admin::BatchUsersGenerationController < AdminsController
   
   def index
-    @users = User.all
+    @users = User.all.order('name')
   end
 
   def new    
@@ -33,7 +33,8 @@ class Admin::BatchUsersGenerationController < AdminsController
    def update_items
     ActiveRecord::Base.transaction do
       params[:user_datas].each do |user_data|
-        user = User.find(user_data[:id])            
+        user = User.find(user_data[:id])
+        
         user.update_attributes!(is_member: user_data[:is_member], is_admin: user_data[:is_admin])
       end  
     end

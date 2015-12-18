@@ -1,15 +1,17 @@
 %section.generate_users.container
   .row
     .col-sm-10
-      = form_tag, batch_users_generation_path, method: 'post', class: 'generate_users' do
+      = bootstrap_form_tag url: create_batch_users_path, class: 'generate_users' do |f|
         %header
           %h1 Batch users generation
         %fieldset
           .form-group
-            %label Users' Email addresses, seperate using ";"
+            %label 
+              Enter emails below
             .row
-              .col-sm-8
-                = f.text_area, :emails, row: 8
-          .f
+              .col-sm-8                
+                
+                = f.text_area :emails, rows: 8,  hide_label: true, placeholder: "seperate emails using ;" 
+
         %fieldset.form-group.action
           = f.submit 'Create users'
