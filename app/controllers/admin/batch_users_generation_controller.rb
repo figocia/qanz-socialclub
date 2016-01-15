@@ -28,6 +28,12 @@ class Admin::BatchUsersGenerationController < AdminsController
     redirect_to admin_batch_users_generation_index_path
   end
 
+  def destroy
+    user = User.find(params[:id])
+    user.destroy unless user.nil? 
+    redirect_to admin_batch_users_generation_index_path
+  end
+
   private
 
    def update_items
