@@ -26,7 +26,7 @@
                 %td
                   = check_box_tag 'user_datas[][is_admin]', 'true', user.is_admin
                 %td           
-                  = link_to "", method: :post do
+                  = link_to admin_batch_users_generation_path(user), method: :delete do
                     %i.glyphicon.glyphicon-remove
         .submit-buttons                        
           .col-sm-2                                      
