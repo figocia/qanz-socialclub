@@ -117,6 +117,7 @@ describe Admin::BatchUsersGenerationController do
       delete :destroy, id: tony.id
       expect(User.all.size).to eq(1)
     end
+    
 
   end
 
