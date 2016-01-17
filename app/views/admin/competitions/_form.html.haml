@@ -1,5 +1,6 @@
 .well
   = bootstrap_form_for [:admin, @competition], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-6", remote: true  do |f|            
+    #error_explanation.bg-danger.text-danger
     = f.text_field :name
     - unless @competition.new_record?      
       = f.check_box :is_finished  

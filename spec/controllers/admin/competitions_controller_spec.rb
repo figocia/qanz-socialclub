@@ -12,8 +12,40 @@ describe Admin::CompetitionsController do
       get :index
       expect(assigns(:competitions)).to eq([foosballtwo, foosballone])
     end
+    it_behaves_like 'require_admin' do
+      let(:action) { get :index }      
+    end
+
   end
 
-  
+  describe 'GET New' do
+    it 'assigns the right competition attribute' do
+      xhr :get, :new
+      expect(assigns(:competition)).to be_an_instance_of Competition
+    end
 
+    it_behaves_like 'require_admin' do
+      let(:action) { xhr :get, :index }      
+    end
+  end
+
+  describe 'POST Create' do
+    it_behaves_like 'require_admin' do
+      let(:action) { xhr :post, :create, competition: {name: 'new competition'} }      
+    end
+
+    context 'valid input' do
+      it 'creates the competition successfully' do
+        xhr :post, :create, competition: {name: 'new competition'}
+        expect(Competition.first.name).to eq('new competition')
+      end
+    end
+
+    context 'invalid input' do
+      it 'does not create the competition' do
+        xhr :post, :create, competition: {name: ''}
+        expect(Competition.all.size).to eq(0)
+      end
+    end
+  end
 end

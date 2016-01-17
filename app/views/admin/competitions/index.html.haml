@@ -1,9 +1,8 @@
 .competition_admin
   %h2 Competitions management
-  .home.competition-group
+  #all-competitions.home.competition-group
     - @competitions.each do |competition|
-      .home.competition      
-        = link_to "#{competition.name}", admin_competition_path(competition), class: "btn btn-primary btn-homepage btn-lg btn-block"
+      = render competition
 
     = link_to 'Add new competition', new_admin_competition_path, remote: true, class: 'btn btn-warning'
 = render 'dialog'
