@@ -4,7 +4,7 @@ class Admin::BatchUsersGenerationController < AdminsController
     @users = User.all.order('name')
   end
 
-  def new    
+  def new
   end
 
   def create
