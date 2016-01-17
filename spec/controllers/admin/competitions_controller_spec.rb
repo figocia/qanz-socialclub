@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Admin::CompetitionManagementController do
+describe Admin::CompetitionsController do
   
   before { login_admin}
 
@@ -12,7 +12,8 @@ describe Admin::CompetitionManagementController do
       get :index
       expect(assigns(:competitions)).to eq([foosballtwo, foosballone])
     end
-
   end
+
+  
 
 end
