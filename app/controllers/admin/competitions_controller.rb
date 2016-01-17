@@ -7,6 +7,11 @@ class Admin::CompetitionsController < AdminsController
     @competition = Competition.new
   end
 
+  def show
+    @competition = Competition.find(params[:id])
+    
+  end 
+
   def create
     @new_competition = Competition.new(competition_params)
     respond_to do |format|

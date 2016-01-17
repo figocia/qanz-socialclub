@@ -48,4 +48,23 @@ describe Admin::CompetitionsController do
       end
     end
   end
+
+  describe 'GET Show' do
+    before { login_admin }
+    let(:competition_one) { Fabricate(:competition)}
+    let(:teamA) { Fabricate(:team, competition: competition_one )}
+    let(:teamB) { Fabricate(:team, competition: competition_one )}
+    let!(:gameA) { Fabricate(:game, competition: competition_one, team_one: teamA, team_two:teamB) }
+    let!(:gameB) { Fabricate(:game, competition: competition_one, team_one: teamB, team_two:teamA)}
+    it_behaves_like 'require_admin' do
+      let(:action) { get :show, id: competition_one.id }
+    end
+
+    it 'has the right competition attribute assgined' do
+      get :show, id: competition_one.id
+      expect(assigns(:competition)).to eq(competition_one)
+    end
+
+
+  end
 end
