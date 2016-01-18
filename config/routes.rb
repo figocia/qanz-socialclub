@@ -36,5 +36,7 @@ Rails.application.routes.draw do
     resources :competitions do
       resources :teams
     end
+
+    resources :team_members, only: [:create, :destroy]
   end
 end
