@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :batch_users_generation, except: [:edit, :show, :update]
     resources :competitions do
-      resources :teams
+      resources :teams, except: [:edit, :show, :update]
     end
 
     resources :team_members, only: [:create, :destroy]

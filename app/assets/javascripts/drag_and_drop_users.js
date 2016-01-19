@@ -1,5 +1,19 @@
 $( document ).ready(function() {
 
+  set_drag_and_drop_listener();
+  
+
+});
+
+$( document ).ajaxComplete(function() {
+
+  set_drag_and_drop_listener();
+  
+
+});
+
+
+function set_drag_and_drop_listener() {
   $(".draggable").draggable({ cursor: "crosshair",
 
                               revert: "invalid",
@@ -50,8 +64,7 @@ $( document ).ready(function() {
                               }
                             }
                           );
-
-});
+}
 
 function add_team_member(elem, droppedOn) {  
 

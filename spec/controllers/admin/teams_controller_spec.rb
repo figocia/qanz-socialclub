@@ -32,4 +32,17 @@ describe Admin::TeamsController do
       expect(assigns(:competition)).to eq(competition)
     end
   end
+
+  describe 'DELETE Destroy' do
+    let(:team) {Fabricate(:team, competition: competition)}
+    
+    it_behaves_like 'require_admin' do
+      let(:action) {   xhr :delete, :destroy, competition_id: competition.id, id: team.id } 
+    end    
+
+    it 'deletes the team' do
+      xhr :delete, :destroy, competition_id: competition.id, id: team.id 
+      expect(Team.all.size).to eq(0)
+    end
+  end
 end

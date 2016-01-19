@@ -1,0 +1,3 @@
+
+// below reload is neccessary, otherwise first time adding team is not loading the team for some reason.
+$('#competition-teams').html('<%= j render @competition.reload.teams %>');
