@@ -8,13 +8,13 @@
         %h4.col-md-4
           %b
             Teams playing        
-      
-      = render @competition.teams
+      #competition-teams
+        = render @competition.teams
   .right.col-sm-3
     .unallocated_users
       .row
         .col-md-4.add-team-button
-          = link_to 'Add new team', nil, class:'btn btn-success'
+          = link_to 'Add new team', new_admin_competition_team_path(@competition), remote: true, class:'btn btn-success'
         .col-md-4
           = link_to 'Manage Games', nil, class:'btn btn-warning'
       .title
@@ -24,4 +24,4 @@
       .well-fixed.col-sm-8.unallocate-droppable
         - @competition.unallocated_users.each do |user|
           = link_to "#{user.name}", nil, class: "btn btn-danger draggable", data: { user_id: user.id}
-        
+= render 'dialog'        

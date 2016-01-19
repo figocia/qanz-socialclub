@@ -21,4 +21,15 @@ describe Admin::TeamsController do
       expect(competition.teams.map(&:name)).to eq(["Team1", "Team2", "Team3"])
     end
   end
+
+  describe 'GET New' do
+    it_behaves_like 'require_admin' do
+      let(:action) {  xhr :get, :new, competition_id: competition.id } 
+    end
+
+    it 'has the competition assign correctly' do
+      xhr :get, :new, competition_id: competition.id
+      expect(assigns(:competition)).to eq(competition)
+    end
+  end
 end

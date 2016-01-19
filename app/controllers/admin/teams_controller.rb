@@ -1,4 +1,17 @@
 class Admin::TeamsController < AdminsController
+  
+  def new
+    @competition = Competition.find(params[:competition_id])  
+    respond_to do |format|
+      if @competition
+        format.js
+      else
+        format.json { render json: @competition.errors.full_messages,
+                                     status: :unprocessable_entity }
+      end
+    end
+  end
+
   def create
     @competition = Competition.find(params[:competition_id])
     count = [0, params[:count].to_i].max
