@@ -19,4 +19,8 @@ class Competition < ActiveRecord::Base
   def unallocated_users
     User.order('name').all.select{|user| !include_member?(user)}
   end
+
+  def next_team_index
+    teams.size + 1
+  end
 end
