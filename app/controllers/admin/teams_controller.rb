@@ -36,4 +36,13 @@ class Admin::TeamsController < AdminsController
       end
     end
   end
+
+  def destroy
+    @competition = Competition.find(params[:competition_id])
+    team = Team.find(params[:id])
+    team.destroy if team
+    respond_to do |format|
+      format.js
+    end
+  end
 end
