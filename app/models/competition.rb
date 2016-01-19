@@ -1,6 +1,6 @@
 class Competition < ActiveRecord::Base
-  has_many :games, -> { order 'is_finished, created_at DESC' }
-  has_many :teams, -> { order 'name' }
+  has_many :games, -> { order 'is_finished, created_at DESC' }, :dependent => :destroy
+  has_many :teams, -> { order 'name' }, :dependent => :destroy
 
   validates :name, presence: true, uniqueness: true
   

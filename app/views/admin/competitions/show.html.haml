@@ -1,0 +1,27 @@
+.competition_admin
+  %header
+    %h2 
+      = "Team and Game management for \"#{@competition.name}\""
+  .left.col-md-9
+    .teams
+      .row
+        %h4.col-md-4
+          %b
+            Teams playing        
+      
+      = render @competition.teams
+  .right.col-sm-3
+    .unallocated_users
+      .row
+        .col-md-4.add-team-button
+          = link_to 'Add new team', nil, class:'btn btn-success'
+        .col-md-4
+          = link_to 'Manage Games', nil, class:'btn btn-warning'
+      .title
+        %h4 
+          %b
+            Unallocated users
+      .well-fixed.col-sm-8.unallocate-droppable
+        - @competition.unallocated_users.each do |user|
+          = link_to "#{user.name}", nil, class: "btn btn-danger draggable", data: { user_id: user.id}
+        

@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get '/confirm_email_send', to: 'forgot_password#confirm'
   get '/token_expire', to: 'pages#expire'
 
+  post '/dissociate_team_member', to: 'admin/team_members#dissociate'
+
   resources :games, only: [:index, :show, :update, :edit ]
 
   resources :competitions, only: :show

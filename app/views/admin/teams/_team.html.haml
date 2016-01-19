@@ -1,0 +1,9 @@
+.col-md-6
+  .panel.panel-primary
+    .panel-heading
+      %h3.panel-title 
+        TeamA
+    .panel-body.team-droppable.panel-min-height{"data-team-id" => "#{team.id}"}
+      - team.team_members.each do |team_member|
+        = link_to "#{team_member.member.name}", nil, class: "btn btn-info draggable", data: { team_member_id: team_member.id, user_id: team_member.member.id}
+      
