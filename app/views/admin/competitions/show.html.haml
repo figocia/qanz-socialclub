@@ -8,7 +8,7 @@
         .col-md-2
           = link_to 'Add new team', new_admin_competition_team_path(@competition), remote: true, class:'btn btn-success btn-sm'
         .col-md-3
-          = link_to 'Manage Games', nil, class:'btn btn-warning btn-sm'
+          = link_to 'Manage Games', admin_competition_rounds_path(@competition), class:'btn btn-warning btn-sm'
       #competition-teams
         = render @competition.teams
   .right.col-sm-3
