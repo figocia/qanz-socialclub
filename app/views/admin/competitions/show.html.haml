@@ -17,8 +17,8 @@
       .title      
         %h4 Unallocated users
       
-        = link_to 'Auto allocate', nil,  class: 'btn btn-primary btn-sm'
-      .well-fixed.col-sm-8.unallocate-droppable
+        = link_to 'Auto allocate', auto_create_team_members_path(competition_id: @competition.id), method: 'post', remote: true,  class: 'btn btn-primary btn-sm'
+      .well-fixed.unallocate-droppable
         = render 'unallocated_users', competition: @competition
         
-= render 'dialog'        
+= render 'dialog'

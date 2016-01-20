@@ -9,7 +9,7 @@ class Admin::CompetitionsController < AdminsController
 
   def show
     @competition = Competition.find(params[:id])
-    
+
   end 
 
   def create
@@ -30,6 +30,16 @@ class Admin::CompetitionsController < AdminsController
       end
     end
   end
+
+  def auto_create_team_members
+    @competition = Competition.find(params[:competition_id])
+    @competition.allocate_users_to_teams_evenly if @competition
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+
 
   def competition_params
     params.require(:competition).permit(:name, :is_finished)

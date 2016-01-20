@@ -23,4 +23,23 @@ class Competition < ActiveRecord::Base
   def next_team_index
     teams.size + 1
   end
+
+  def allocate_users_to_teams_evenly
+      
+      if unallocated_users.size > 0 && teams.size > 0            
+        average_num = User.all.size / teams.size.to_f
+
+        
+        unallocated_users.each do |user|
+
+          team = teams.select{|t| t.reload.team_members.size < average_num }.sort_by{|item| item.team_members.size }.first
+          
+          TeamMember.create(member: user, team: team ) if team
+
+        end
+        
+      end
+  end
+
+
 end
