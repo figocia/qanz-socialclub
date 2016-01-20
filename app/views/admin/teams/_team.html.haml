@@ -9,5 +9,5 @@
           %i.glyphicon.glyphicon-remove
     .panel-body.team-droppable.panel-min-height{"data-team-id" => "#{team.id}"}
       - team.team_members.each do |team_member|
-        = link_to "#{team_member.member.name}", '#', class: "btn btn-info draggable", data: { team_member_id: team_member.id, user_id: team_member.member.id}
+        = link_to "#{team_member.member.name}", '#', class: "btn btn-info btn-xs draggable", data: { team_member_id: team_member.id, user_id: team_member.member.id}
       

@@ -71,17 +71,26 @@ function add_team_member(elem, droppedOn) {
   $.ajax({
     type: 'POST',
     url: '/admin/team_members',
-    data: {team_member: {member_id: $(elem).data("user-id"), team_id: $(droppedOn).data("team-id") }, old_team_member_id: $(elem).data("team-member-id")}
+    data: {team_member: {member_id: $(elem).data("user-id"), team_id: $(droppedOn).data("team-id") }, old_team_member_id: $(elem).data("team-member-id")},
+    success: function(data) {
+      //console.log("add", $(elem).data("user-id", 123456));
+      $(elem).data("team-member-id", data.id);
+      alert("it should be here shouldn't it? " + $(elem).data('team-member-id'));
+
+    }
   })
   return false;
 }
 
 function delete_team_member(elem) {
   $.ajax({
-    url: '/dissociate_team_member',    
+    url: '/admin/team_members/' + $(elem).data("team-member-id"),     
     data: {id: $(elem).data("team-member-id")},
-    type: 'POST'
-
+    type: 'DELETE',
+    success: function(data) {
+      // console.log('delete$', $(elem).data("user-id"));
+      $(elem).data("team-member-id", "");
+    }
     
   })
   return false;

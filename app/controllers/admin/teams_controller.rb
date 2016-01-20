@@ -21,8 +21,7 @@ class Admin::TeamsController < AdminsController
         create_teams(count, @competition)
         format.js
       rescue
-        format.json { render json: { responseText: 'Create teams failed.'},
-                                     status: :unprocessable_entity }
+        format.json { head :no_content} 
       end
     end
   end
