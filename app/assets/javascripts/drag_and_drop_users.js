@@ -75,7 +75,7 @@ function add_team_member(elem, droppedOn) {
     success: function(data) {
       //console.log("add", $(elem).data("user-id", 123456));
       $(elem).data("team-member-id", data.id);
-      alert("it should be here shouldn't it? " + $(elem).data('team-member-id'));
+      // alert("it should be here shouldn't it? " + $(elem).data('team-member-id'));
 
     }
   })
