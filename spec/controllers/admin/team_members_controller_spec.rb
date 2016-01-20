@@ -27,11 +27,11 @@ describe Admin::TeamMembersController do
     end
   end
 
-  describe 'POST Dissociate' do
+  describe 'DELETE Destroy' do
     it 'deletes the team member' do
       team_member_old = Fabricate(:team_member)
 
-      xhr :post, :dissociate, id: team_member_old.id
+      xhr :delete, :destroy, id: team_member_old.id
       expect(TeamMember.all.size).to eq(0)  
     end
     

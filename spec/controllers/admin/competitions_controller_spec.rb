@@ -50,7 +50,7 @@ describe Admin::CompetitionsController do
   end
 
   describe 'GET Show' do
-    before { login_admin }
+    
     let(:competition_one) { Fabricate(:competition)}
     let(:teamA) { Fabricate(:team, competition: competition_one )}
     let(:teamB) { Fabricate(:team, competition: competition_one )}
@@ -66,5 +66,48 @@ describe Admin::CompetitionsController do
     end
 
 
+  end
+
+  describe 'POST AutoCreateTeamMembers' do
+    
+    let(:competition_one) { Fabricate(:competition)}
+    let!(:teamA) { Fabricate(:team, competition: competition_one )}
+    let!(:teamB) { Fabricate(:team, competition: competition_one )}
+    let!(:user1) { Fabricate(:user)}
+    let!(:user2) { Fabricate(:user)}
+    let!(:user3) { Fabricate(:user)}
+    let!(:user4) { Fabricate(:user)}
+    let!(:user5) { Fabricate(:user)}
+
+    it_behaves_like 'require_admin' do
+      let(:action) { xhr :post, :auto_create_team_members}
+    end
+
+    it 'auto allocate the all users to the rest of the teams' do
+      xhr :post, :auto_create_team_members, competition_id: competition_one.id
+      expect(competition_one.reload.unallocated_users.size).to eq(0)
+    end
+
+    it 'allocate the users evenly' do
+      xhr :post, :auto_create_team_members, competition_id: competition_one.id
+      expect(competition_one.teams.map(&:team_members).map(&:size)).to eq([3, 3])
+    end
+
+    it 'allocate the odd one to first team if user number not even' do
+      user6 = Fabricate(:user)
+      xhr :post, :auto_create_team_members, competition_id: competition_one.id
+      expect(competition_one.teams.map(&:team_members).map(&:size)).to eq([4, 3])
+    end
+
+    it 'does not remove the already allocated users from teams' do
+      team_member1 = Fabricate(:team_member, member: user1, team: teamA)
+      team_member2 = Fabricate(:team_member, member: user2, team: teamA)
+      team_member3 = Fabricate(:team_member, member: user3, team: teamA)
+      team_member4 = Fabricate(:team_member, member: user4, team: teamA)
+      team_member5 = Fabricate(:team_member, member: user5, team: teamA)
+
+      xhr :post, :auto_create_team_members, competition_id: competition_one.id
+      expect(teamB.team_members.size).to eq(1)
+    end
   end
 end

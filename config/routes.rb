@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get '/confirm_email_send', to: 'forgot_password#confirm'
   get '/token_expire', to: 'pages#expire'
 
-  
+  post '/auto_create_team_members', to: 'admin/competitions#auto_create_team_members'
 
   resources :games, only: [:index, :show, :update, :edit ]
 
