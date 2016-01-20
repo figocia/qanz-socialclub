@@ -1,0 +1,13 @@
+.round-admin
+  %h2
+    = "Game management for \"#{@competition.name}\""
+  .row.add-rounds
+    .col-md-2
+      = link_to 'Add new Round', nil, class: 'btn btn-primary'
+    .col-md-3
+      = link_to 'Auto generate next round', nil, class: 'btn btn-success'
+  .round-group    
+
+    - @rounds.each do |round|
+      .round      
+        = link_to "#{round.name}", admin_competition_round_path(@competition, round), class: 'btn btn-warning btn-homepage btn-lg btn-block'
