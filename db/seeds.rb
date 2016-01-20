@@ -30,19 +30,28 @@ team4 = Team.create(name: 'Team4', competition: competition2015 )
 
 # team10 = Team.create(name: 'Team8', competition: competition2014 ) 
 # team11 = Team.create(name: 'Team7', competition: competition2014 ) 
- 
-game1 = Game.create(round: 'Round4', competition: competition2015, team_one: team1, team_two: team2, is_finished: false)
-game2 = Game.create(round: 'Round5', competition: competition2015, team_one: team3, team_two: team4, is_finished: false)
-game3 = Game.create(round: 'Round6', competition: competition2015, team_one: team2, team_two: team1, is_finished: false)
-game4 = Game.create(round: 'Round7', competition: competition2015, team_one: team4, team_two: team3, is_finished: false)
-game5 = Game.create(round: 'Round1', competition: competition2015, team_one: team1, team_two: team4, is_finished: true, team_one_score: 10, team_two_score: 2)
-game6 = Game.create(round: 'Round2', competition: competition2015, team_one: team3, team_two: team2, is_finished: true, team_one_score: 10, team_two_score: 2)
-game7 = Game.create(round: 'Round3', competition: competition2015, team_one: team1, team_two: team3, is_finished: true, team_one_score: 10, team_two_score: 2)
-game8 = Game.create(round: 'Round4', competition: competition2015, team_one: team2, team_two: team4, is_finished: true, team_one_score: 10, team_two_score: 2)
+round4 = Round.create( name: 'Round4', competition: competition2015)
+round5 = Round.create( name: 'Round5', competition: competition2015)
+round6 = Round.create( name: 'Round6', competition: competition2015)
+round7 = Round.create( name: 'Round7', competition: competition2015)
+round1 = Round.create( name: 'Round1', competition: competition2015)
+round2 = Round.create( name: 'Round2', competition: competition2015)
+round3 = Round.create( name: 'Round3', competition: competition2015)
+round8 = Round.create( name: 'Round8', competition: competition2015)
+
+
+game1 = Game.create(round: round4, competition: competition2015, team_one: team1, team_two: team2, is_finished: false)
+game2 = Game.create(round: round5, competition: competition2015, team_one: team3, team_two: team4, is_finished: false)
+game3 = Game.create(round: round6, competition: competition2015, team_one: team2, team_two: team1, is_finished: false)
+game4 = Game.create(round: round7, competition: competition2015, team_one: team4, team_two: team3, is_finished: false)
+game5 = Game.create(round: round1, competition: competition2015, team_one: team1, team_two: team4, is_finished: true, team_one_score: 10, team_two_score: 2)
+game6 = Game.create(round: round2, competition: competition2015, team_one: team3, team_two: team2, is_finished: true, team_one_score: 10, team_two_score: 2)
+game7 = Game.create(round: round3, competition: competition2015, team_one: team1, team_two: team3, is_finished: true, team_one_score: 10, team_two_score: 2)
+game8 = Game.create(round: round8, competition: competition2015, team_one: team2, team_two: team4, is_finished: true, team_one_score: 10, team_two_score: 2)
 
 
 
-user1 = User.create(name: 'Figo', email: 'yufei1.chen@3ds.com', is_member: true, password: '12345' )
+user1 = User.create(name: 'Figo', email: 'yufei1.chen@3ds.com', is_member: true, is_admin: true,  password: '12345' )
 user2 = User.create(name: 'Alice', email: 'yufei2.chen@3ds.com', is_member: false, password: '12345' )
 user3 = User.create(name: 'Bob', email: 'yufei3.chen@3ds.com', is_member: false, password: '12345' )
 user4 = User.create(name: 'Yufei', email: 'yufei4.chen@3ds.com', is_member: false, password: '12345' )
