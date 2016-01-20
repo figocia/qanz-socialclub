@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     resources :batch_users_generation, except: [:edit, :show, :update]
     resources :competitions do
       resources :teams, except: [:edit, :show, :update]
+      resources :rounds
     end
 
     resources :team_members, only: [:create, :destroy]
