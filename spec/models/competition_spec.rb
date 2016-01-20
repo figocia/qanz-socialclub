@@ -3,6 +3,7 @@ require 'rails_helper'
 describe Competition do
   it{ should have_many(:games).order('is_finished, created_at DESC')}
   it{ should have_many(:teams)}
+  it{ should have_many(:rounds).order('created_at DESC')}
 
   describe '#popular_teams' do
     it 'gets the team with the correct sequence' do

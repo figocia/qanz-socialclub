@@ -1,4 +1,5 @@
 class Competition < ActiveRecord::Base
+  has_many :rounds, -> { order  'created_at DESC' }, :dependent => :destroy
   has_many :games, -> { order 'is_finished, created_at DESC' }, :dependent => :destroy
   has_many :teams, -> { order 'name' }, :dependent => :destroy
 
