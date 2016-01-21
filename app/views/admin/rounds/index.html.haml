@@ -10,4 +10,4 @@
     - @rounds.each do |round|
       .round      
         = link_to "#{round.name}", admin_competition_round_path(@competition, round), class: 'btn btn-warning btn-homepage btn-lg btn-block'
-= render 'dialog'
+= render 'shared/dialog'
