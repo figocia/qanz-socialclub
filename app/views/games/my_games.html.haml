@@ -5,5 +5,5 @@
       %h2 
         = competition.name
 
-    = render competition.games_for_member(current_user)
+    = render competition.games_for_member(current_user), admin: false
 = render 'shared/dialog'
