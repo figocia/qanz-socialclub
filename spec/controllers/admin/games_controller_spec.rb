@@ -16,6 +16,10 @@ describe Admin::GamesController do
     end
   end
 
-  
+  describe 'POST Create' do
+    it_behaves_like 'require_admin' do
+      let(:action) { xhr :post, :create}
+    end
+  end
 
 end
