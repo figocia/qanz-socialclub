@@ -41,5 +41,6 @@ Rails.application.routes.draw do
     end
 
     resources :team_members, only: [:create, :destroy]
+    resources :games, only: [:create, :new]
   end
 end
