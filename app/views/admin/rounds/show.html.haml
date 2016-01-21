@@ -1,1 +1,11 @@
-= render @round.games
+.game-admin
+  %header
+    %h3
+      = raw "Game management for #{@round.name} of #{ link_to @competition.name, admin_competition_rounds_path(@competition)}"
+  .row.add-game
+    .col-sm-3
+      = link_to 'Auto generate games for all teams', nil, class: 'btn btn-success'
+    .col-sm-3
+      = link_to 'Add single game', nil, class: 'btn btn-primary'
+  .games-body
+    = render @round.games

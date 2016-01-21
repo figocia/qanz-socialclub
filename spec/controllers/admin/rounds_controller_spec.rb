@@ -40,4 +40,21 @@ describe Admin::RoundsController do
       expect(assigns(:competition)).to eq(competition)
     end
   end
+
+  describe 'POST Create' do
+    it_behaves_like 'require_admin' do
+      let(:action) { xhr :post, :create, competition_id: competition.id, round: { name: 'RoundABC'}}      
+    end        
+
+    it 'creates the round successfully' do
+      xhr :post, :create, competition_id: competition.id, round: { name: 'RoundABC'}
+      expect(Round.first.name).to eq('RoundABC')
+    end
+
+    it 'does not create round with duplicated name' do
+      roundABC = Fabricate(:round, name: 'RoundABC', competition: competition)
+      xhr :post, :create, competition_id: competition.id, round: { name: 'RoundABC'}
+      expect(Round.all.size).to eq(1)
+    end
+  end
 end
