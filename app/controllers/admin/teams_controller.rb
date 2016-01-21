@@ -1,7 +1,7 @@
 class Admin::TeamsController < AdminsController
-  
-  def new
-    @competition = Competition.find(params[:competition_id])  
+  before_action :set_competition, except: [:create_teams]
+
+  def new    
     respond_to do |format|
       if @competition
         format.js
@@ -13,7 +13,6 @@ class Admin::TeamsController < AdminsController
   end
 
   def create
-    @competition = Competition.find(params[:competition_id])
     count = [0, params[:count].to_i].max
 
     respond_to do |format|
@@ -37,11 +36,15 @@ class Admin::TeamsController < AdminsController
   end
 
   def destroy
-    @competition = Competition.find(params[:competition_id])
     team = Team.find(params[:id])
     team.destroy if team
     respond_to do |format|
       format.js
     end
+  end
+
+  private
+  def set_competition
+    @competition = Competition.find(params[:competition_id])  
   end
 end

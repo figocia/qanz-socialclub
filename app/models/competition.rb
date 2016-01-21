@@ -25,6 +25,10 @@ class Competition < ActiveRecord::Base
     teams.size + 1
   end
 
+  def latest_round_name
+    rounds.first.name
+  end
+
   def allocate_users_to_teams_evenly
       
       if unallocated_users.size > 0 && teams.size > 0            
