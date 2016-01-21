@@ -6,6 +6,7 @@
     .col-sm-3
       = link_to 'Auto generate games for all teams', nil, class: 'btn btn-success'
     .col-sm-3
-      = link_to 'Add single game', nil, class: 'btn btn-primary'
+      = link_to 'Add single game', new_admin_game_path(round_id: @round.id), remote: true, class: 'btn btn-primary'
   .games-body
     = render @round.games
+= render 'shared/dialog'
