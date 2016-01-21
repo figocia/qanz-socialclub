@@ -2,4 +2,5 @@
   %h2 
     = @competition.name
 
-= render @competition.games
+= render @competition.games, admin: false
+= render 'shared/dialog'
