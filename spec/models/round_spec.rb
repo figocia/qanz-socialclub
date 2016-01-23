@@ -12,8 +12,9 @@ describe Round do
       round1 = Fabricate(:round, name: 'round1', competition: competition )   
       round2 = Fabricate(:round, name: 'round2', competition: competition )   
       round3 = Fabricate(:round, name: 'round3', competition: competition )   
+      round4 = Fabricate(:round, name: 'round4', competition: competition )   
 
-      expect(round2.previous).to eq(round1)
+      expect(round3.previous).to eq(round2)
     end
 
     it 'return nil for the first one' do
