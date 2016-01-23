@@ -1,5 +1,5 @@
 Fabricator(:round) do
-  name 'Round1'
+  name {Faker::Name.name}
   competition
 end
 

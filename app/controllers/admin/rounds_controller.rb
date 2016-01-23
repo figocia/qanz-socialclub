@@ -1,6 +1,6 @@
 class Admin::RoundsController < AdminsController
 
-  before_action :set_competition
+  before_action :set_competition, except: [:auto_create_games]
   
   def index    
     @rounds = @competition.rounds
@@ -28,6 +28,15 @@ class Admin::RoundsController < AdminsController
   end
 
   def auto_create_games
+    @round = Round.find(params[:round_id])
+    respond_to do |format|
+      begin
+        @round.auto_create_games
+        format.js
+      rescue
+        format.js { flash.now[:error] = 'Create games failed'}
+      end
+    end
     
   end
 
