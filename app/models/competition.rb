@@ -26,7 +26,7 @@ class Competition < ActiveRecord::Base
   end
 
   def latest_round_name
-    rounds.first.name
+    rounds.first.name if rounds.size > 0
   end
 
   def allocate_users_to_teams_evenly
