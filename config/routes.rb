@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get '/token_expire', to: 'pages#expire'
 
   post '/auto_create_team_members', to: 'admin/competitions#auto_create_team_members'
-  post '/auto_create_GAMES', to: 'admin/rounds#auto_create_games'
+  post '/auto_create_games', to: 'admin/rounds#auto_create_games'
 
   resources :games, only: [:index, :show, :update, :edit ]
 

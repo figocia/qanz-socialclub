@@ -5,11 +5,11 @@ class Round < ActiveRecord::Base
   validates_uniqueness_of :name, scope: :competition_id
 
   def previous
-    competition.rounds.where("created_at < ?", created_at).last
+    competition.rounds.where("created_at < ?", created_at).first
   end
 
   def next
-    competition.rounds.where("created_at > ?", created_at).first
+    competition.rounds.where("created_at > ?", created_at).next
   end
 
   def auto_generate_match_up
@@ -19,6 +19,7 @@ class Round < ActiveRecord::Base
     if previous
       teamAs = previous.games.collect{|game| game.team_one_id}
       teamBs = previous.games.collect{|game| game.team_two_id}
+      
 
       teamA_last = teamAs.pop
       teamB_last = teamBs.pop
@@ -41,7 +42,7 @@ class Round < ActiveRecord::Base
     ActiveRecord::Base.transaction do
 
       match_ups[:left].size.times do |i|
-        # require 'pry'; binding.pry
+        
         new_game = Game.new( team_one_id: match_ups[:left][-i-1], team_two_id: match_ups[:right][-i-1], round: self, competition: self.competition)
         new_game.save!
       end
