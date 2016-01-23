@@ -34,7 +34,7 @@ class Admin::RoundsController < AdminsController
         @round.auto_create_games
         format.js
       rescue
-        format.js { flash.now[:error] = 'Create games failed'}
+        format.js { flash[:error] = 'Game already exsit in this round'}
       end
     end
     
