@@ -18,6 +18,15 @@ class Admin::GamesController < AdminsController
     end
   end
 
+  def destroy    
+    game = Game.find(params[:id])
+    @round = game.round if game
+    game.destroy if game
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
   def find_round
     @round = Round.find(params[:round_id])

@@ -47,9 +47,25 @@ describe Admin::GamesController do
         expect(Game.all.size).to eq(0)
       end
     end
-
     
+  end
 
+  describe 'DELETE Destroy' do
+    
+    let!(:team1) { Fabricate(:team, name: 'team1', competition: competition)}
+    let!(:team2) { Fabricate(:team, name: 'team2', competition: competition)}
+    
+    let!(:game) { Fabricate(:game, round: round, team_one: team1, team_two: team2, created_at: 2.day.ago)}
+    
+    
+    it_behaves_like 'require_admin' do
+      let(:action) { xhr :delete, :destroy, id: game.id}      
+    end        
+
+    it 'deletes the record' do
+      xhr :delete, :destroy, id: game.id
+      expect(Game.all.size).to eq(0)
+    end
   end
 
 end
