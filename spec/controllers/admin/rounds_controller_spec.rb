@@ -83,4 +83,17 @@ describe Admin::RoundsController do
       expect(round2.reload.games.map(&:team_one)).to eq([team1, team2])
     end
   end
+
+  describe 'DELETE Destroy' do
+    let!(:round) { Fabricate(:round, competition: competition)}
+    
+    it_behaves_like 'require_admin' do
+      let(:action) { xhr :delete, :destroy, id: round.id, competition_id: competition.id }      
+    end        
+
+    it 'deletes the record' do
+      xhr :delete, :destroy, id: round.id, competition_id: competition.id
+      expect(Round.all.size).to eq(0)
+    end
+  end
 end
