@@ -65,8 +65,8 @@ describe Admin::RoundsController do
     let(:team4) { Fabricate(:team, competition: competition)}
     let(:round) { Fabricate(:round, competition: competition)}
     let(:round2) { Fabricate(:round, competition: competition)}
-    let(:game) { Fabricate(:game, round: round, team_one: team1, team_two: team2)}
-    let(:game2) { Fabricate(:game, round: round, team_one: team3, team_two: team4)}
+    let!(:game) { Fabricate(:game, round: round, team_one: team1, team_two: team2, created_at: 2.day.ago)}
+    let!(:game2) { Fabricate(:game, round: round, team_one: team3, team_two: team4, created_at: 1.day.ago)}
     
     it_behaves_like 'require_admin' do
       let(:action) { xhr :post, :auto_create_games, round_id: round.id }      
@@ -74,7 +74,7 @@ describe Admin::RoundsController do
 
     it 'creates the next round game automatically base on previous rounds match up' do
       xhr :post, :auto_create_games, round_id: round2.id 
-      expect(round2.games.map(&:team_one)).to eq([team3, team2])
+      expect(round2.reload.games.map(&:team_one)).to eq([team3, team2])
     end
   end
 end
