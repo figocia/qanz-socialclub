@@ -27,6 +27,9 @@ class Admin::RoundsController < AdminsController
     end
   end
 
+  def auto_create_games
+    
+  end
 
   private
 
