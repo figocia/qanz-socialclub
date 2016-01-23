@@ -57,4 +57,24 @@ describe Admin::RoundsController do
       expect(Round.all.size).to eq(1)
     end
   end
+
+  describe 'POST AutoCreateGames' do
+    let(:team1) { Fabricate(:team, competition: competition)}
+    let(:team2) { Fabricate(:team, competition: competition)}
+    let(:team3) { Fabricate(:team, competition: competition)}
+    let(:team4) { Fabricate(:team, competition: competition)}
+    let(:round) { Fabricate(:round, competition: competition)}
+    let(:round2) { Fabricate(:round, competition: competition)}
+    let(:game) { Fabricate(:game, round: round, team_one: team1, team_two: team2)}
+    let(:game2) { Fabricate(:game, round: round, team_one: team3, team_two: team4)}
+    
+    it_behaves_like 'require_admin' do
+      let(:action) { xhr :post, :auto_create_games, round_id: round.id }      
+    end
+
+    it 'creates the next round game automatically base on previous rounds match up' do
+      xhr :post, :auto_create_games, round_id: round2.id 
+      expect(round2.games.map(&:team_one)).to eq([team3, team2])
+    end
+  end
 end

@@ -1,6 +1,6 @@
 class Round < ActiveRecord::Base
   belongs_to :competition
-  has_many :games, :dependent => :destroy
+  has_many :games, -> { order 'created_at DESC' }, :dependent => :destroy
 
   validates_uniqueness_of :name, scope: :competition_id
 
