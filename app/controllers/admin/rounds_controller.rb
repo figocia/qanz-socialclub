@@ -40,6 +40,14 @@ class Admin::RoundsController < AdminsController
     
   end
 
+  def destroy
+    round = Round.find(params[:id])
+    round.destroy if round
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def set_competition

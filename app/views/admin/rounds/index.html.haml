@@ -6,8 +6,5 @@
     = link_to 'Add new Round', new_admin_competition_round_path(@competition), remote: true, class: 'btn btn-primary'
         
   .round-group    
-
-    - @rounds.each do |round|
-      .round      
-        = link_to "#{round.name}", admin_competition_round_path(@competition, round), class: 'btn btn-warning btn-homepage btn-lg btn-block'
+    = render @rounds      
 = render 'shared/dialog'
