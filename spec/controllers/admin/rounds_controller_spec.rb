@@ -59,22 +59,28 @@ describe Admin::RoundsController do
   end
 
   describe 'POST AutoCreateGames' do
-    let(:team1) { Fabricate(:team, competition: competition)}
-    let(:team2) { Fabricate(:team, competition: competition)}
-    let(:team3) { Fabricate(:team, competition: competition)}
-    let(:team4) { Fabricate(:team, competition: competition)}
-    let(:round) { Fabricate(:round, competition: competition)}
+    let!(:team1) { Fabricate(:team, name: 'team1', competition: competition)}
+    let!(:team2) { Fabricate(:team, name: 'team2', competition: competition)}
+    let!(:team3) { Fabricate(:team, name: 'team3', competition: competition)}
+    let!(:team4) { Fabricate(:team, name: 'team4', competition: competition)}    
     let(:round2) { Fabricate(:round, competition: competition)}
-    let!(:game) { Fabricate(:game, round: round, team_one: team1, team_two: team2, created_at: 2.day.ago)}
-    let!(:game2) { Fabricate(:game, round: round, team_one: team3, team_two: team4, created_at: 1.day.ago)}
     
     it_behaves_like 'require_admin' do
-      let(:action) { xhr :post, :auto_create_games, round_id: round.id }      
+      let(:action) { xhr :post, :auto_create_games, round_id: round2.id }      
     end
 
     it 'creates the next round game automatically base on previous rounds match up' do
+      round = Fabricate(:round, competition: competition)
+      game = Fabricate(:game, round: round, team_one: team1, team_two: team2, created_at: 2.day.ago)
+      game2 = Fabricate(:game, round: round, team_one: team3, team_two: team4, created_at: 1.day.ago)
+    
       xhr :post, :auto_create_games, round_id: round2.id 
       expect(round2.reload.games.map(&:team_one)).to eq([team3, team2])
+    end
+
+    it 'creates the next round game without previous round' do
+      xhr :post, :auto_create_games, round_id: round2.id 
+      expect(round2.reload.games.map(&:team_one)).to eq([team1, team2])
     end
   end
 end
