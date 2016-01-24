@@ -14,5 +14,19 @@ describe Admin::EventsController do
     end
   end
 
+  describe 'GET Index' do
+    let!(:party) { Fabricate(:event, time: 1.day.from_now, address: 'New York, NY') }
+    let!(:friday_lunch) { Fabricate(:event, time: 3.day.from_now, address: 'New York, NY') }
+    
+    it_behaves_like 'require_admin' do
+      let(:action) { get :index}
+    end        
+
+    it 'returns the events in order' do
+      get :index
+      expect(assigns(:events)).to eq([party, friday_lunch])
+    end
+  end
+
   
 end
