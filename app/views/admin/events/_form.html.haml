@@ -1,0 +1,11 @@
+.well
+  = bootstrap_form_for [:admin, @event], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-6", remote: true  do |f|            
+    #error_explanation.bg-danger.text-danger
+    = f.text_field :name
+    = f.datetime_field :time
+    = f.text_field :address
+    = f.file_field :image
+    = f.check_box :member_only
+    = f.text_field :non_member_fee
+    = f.text_area :description
+    = f.submit "Create",  class: 'btn btn-primary'

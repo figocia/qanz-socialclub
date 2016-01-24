@@ -21,6 +21,8 @@ gem 'bcrypt-ruby'
 gem 'figaro',               '1.0.0'
 gem 'gmaps4rails'
 gem 'geocoder'
+gem 'carrierwave'
+gem "mini_magick"
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'

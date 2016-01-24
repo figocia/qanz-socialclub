@@ -5,6 +5,8 @@ class Event < ActiveRecord::Base
   geocoded_by :address
   after_validation :geocode, :if => :address_changed?
 
+  mount_uploader :image, EventImageUploader 
+
   def is_free?(user)
     !member_only or user.is_member?
   end
