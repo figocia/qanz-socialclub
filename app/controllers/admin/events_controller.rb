@@ -9,11 +9,19 @@ class Admin::EventsController < AdminsController
       format.js
     end
   end
+  
   def edit
     @event = Event.find(params[:id])
     respond_to do |format|
       format.js
     end
+  end
+
+  def update
+    @event = Event.find(params[:id])
+    success = @event.update_attributes(event_params) if @event
+    flash[:error] = 'Update failed' unless success
+    redirect_to admin_events_path    
   end
 
   def create

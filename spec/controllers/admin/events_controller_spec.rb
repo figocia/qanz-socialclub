@@ -69,5 +69,18 @@ describe Admin::EventsController do
     end
   end
 
+  describe 'PATCH Update' do
+    let(:party) { Fabricate(:event, time: 1.day.from_now, address: 'New York, NY') }
+
+    it_behaves_like 'require_admin' do
+      let(:action) { xhr :patch, :update, event: { name: 'updated event', address: 'New York, NY', time: 1.day.from_now }, id: party.id}
+    end        
+
+    it 'updates the event' do
+       patch :update, event: { name: 'updated event', address: 'New York, NY', time: 1.day.from_now }, id: party.id
+       expect(party.reload.name).to eq('updated event')
+    end
+
+  end
 
 end

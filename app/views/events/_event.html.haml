@@ -16,6 +16,7 @@
               = link_to "Pay $#{event.non_member_fee} to come", nil, class: 'btn btn-success'
               = link_to "Join social club to come for free", join_social_club_index_path(event_id: event.id), method: 'post', class: 'btn btn-primary'
           - else
+            = link_to 'Edit', edit_admin_event_path(event), remote: true, class: 'btn btn-primary'
             = link_to 'Delete', admin_event_path(event), method: 'delete', remote: true, class: 'btn btn-danger'  
       .event_info.col-sm-3
         %header
