@@ -4,5 +4,6 @@
     
   .row.add-event
     = link_to 'New event', new_admin_event_path, remote: true, class: 'btn btn-primary'
-  = render @events
+  .event-body
+    = render @events
 = render 'shared/dialog'
