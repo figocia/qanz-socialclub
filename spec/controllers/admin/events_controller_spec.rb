@@ -41,4 +41,19 @@ describe Admin::EventsController do
     end
   end
   
+  describe 'DELETE Destroy' do
+    
+    let(:event) { Fabricate(:event)}
+    
+    
+    it_behaves_like 'require_admin' do
+      let(:action) { xhr :delete, :destroy, id: event.id}      
+    end        
+
+    it 'deletes the record' do
+      xhr :delete, :destroy, id: event.id
+      expect(Event.all.size).to eq(0)
+    end
+  end
+
 end
