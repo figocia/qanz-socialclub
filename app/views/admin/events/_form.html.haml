@@ -9,4 +9,4 @@
     = f.check_box :member_only
     = f.text_field :non_member_fee
     = f.text_area :description
-    = f.submit "Create",  class: 'btn btn-primary'
+    = f.submit @event.new_record? ? "Create" : 'Update',  class: 'btn btn-primary'
