@@ -28,6 +28,14 @@ class Admin::EventsController < AdminsController
     end
   end
 
+  def destroy
+    event = Event.find(params[:id])    
+    event.destroy if event
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
   def event_params
     params.require(:event).permit(:name, :time, :address, :image, :member_only, :non_member_fee, :description)
