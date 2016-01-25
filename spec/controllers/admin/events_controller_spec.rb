@@ -28,5 +28,17 @@ describe Admin::EventsController do
     end
   end
 
+
+  describe 'POST Create' do
+    
+    it_behaves_like 'require_admin' do
+      let(:action) { xhr :post, :create}
+    end            
+
+    it 'creates the event' do
+      post :create, event: {name: 'Event1'}
+      expect(Event.all.size).to eq(1)
+    end
+  end
   
 end

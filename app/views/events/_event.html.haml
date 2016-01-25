@@ -28,7 +28,7 @@
             = "Address: #{event.address}"        
         .row    
           %h4
-            = event.time.strftime("%F at %I:%M%p")
+            = event.time.strftime("%F at %I:%M%p") if event.time?
         .row.description 
           %h4 Description:        
           %p 

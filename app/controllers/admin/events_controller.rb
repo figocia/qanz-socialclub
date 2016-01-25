@@ -9,7 +9,25 @@ class Admin::EventsController < AdminsController
       format.js
     end
   end
-  
+
+  def create
+    @event = Event.new(event_params)
+    respond_to do |format|
+      if @event.save
+        format.js
+        format.html { redirect_to admin_events_path }
+      else
+        format.json { render json: @event.errors.full_messages,
+                                     status: :unprocessable_entity }
+        format.html do
+          flash[:error] = "Create event failed"
+          redirect_to admin_events_path
+        end 
+             
+      end
+    end
+  end
+
   private
   def event_params
     params.require(:event).permit(:name, :time, :address, :image, :member_only, :non_member_fee, :description)
