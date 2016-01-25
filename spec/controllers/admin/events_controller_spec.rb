@@ -40,7 +40,7 @@ describe Admin::EventsController do
       expect(Event.all.size).to eq(1)
     end
   end
-  
+
   describe 'DELETE Destroy' do
     
     let(:event) { Fabricate(:event)}
@@ -55,5 +55,19 @@ describe Admin::EventsController do
       expect(Event.all.size).to eq(0)
     end
   end
+
+  describe 'GET Edit' do
+    let!(:party) { Fabricate(:event, time: 1.day.from_now, address: 'New York, NY') }
+
+    it_behaves_like 'require_admin' do
+      let(:action) { xhr :get, :edit, id: party.id}
+    end        
+
+    it 'has the right event assigned' do
+      xhr :get, :edit, id: party.id
+      expect(assigns(:event)).to eq(party)
+    end
+  end
+
 
 end

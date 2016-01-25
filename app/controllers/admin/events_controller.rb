@@ -9,6 +9,12 @@ class Admin::EventsController < AdminsController
       format.js
     end
   end
+  def edit
+    @event = Event.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
 
   def create
     @event = Event.new(event_params)
