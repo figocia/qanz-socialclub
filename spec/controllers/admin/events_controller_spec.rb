@@ -56,6 +56,7 @@ describe Admin::EventsController do
     end
   end
 
+
   describe 'GET Edit' do
     let!(:party) { Fabricate(:event, time: 1.day.from_now, address: 'New York, NY') }
 
