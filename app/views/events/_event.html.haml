@@ -20,7 +20,8 @@
             = link_to 'Delete', admin_event_path(event), method: 'delete', remote: true, class: 'btn btn-danger'  
       .event_info.col-sm-3
         %header
-          %h3 The Bournce
+          %h3 
+            = event.name
           %span.badge 
             = event.number_of_people_comming  
           People coming
