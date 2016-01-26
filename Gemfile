@@ -22,6 +22,8 @@ gem 'figaro',               '1.0.0'
 gem 'gmaps4rails'
 gem 'geocoder'
 gem 'carrierwave'
+gem 'carrierwave-aws'
+
 gem "mini_magick"
 
 group :development, :test do
