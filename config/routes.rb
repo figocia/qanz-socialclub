@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   get '/confirm_email_send', to: 'forgot_password#confirm'
   get '/token_expire', to: 'pages#expire'
 
+  post '/auto_create_team_members', to: 'admin/competitions#auto_create_team_members'
+  post '/auto_create_games', to: 'admin/rounds#auto_create_games'
+
   resources :games, only: [:index, :show, :update, :edit ]
 
   resources :competitions, only: :show
@@ -33,5 +36,13 @@ Rails.application.routes.draw do
   
   namespace :admin do
     resources :batch_users_generation, except: [:edit, :show, :update]
+    resources :competitions do
+      resources :teams, except: [:edit, :show, :update]
+      resources :rounds
+    end
+
+    resources :team_members, only: [:create, :destroy]
+    resources :games, only: [:create, :new, :destroy]
+    resources :events
   end
 end

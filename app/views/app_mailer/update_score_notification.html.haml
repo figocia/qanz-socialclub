@@ -2,7 +2,7 @@
 %html(lang="en-US")
   %body
     %h2
-      = "#{@user.name} has updated the score of #{@game.round} game between #{@game.team_one.name} and #{@game.team_two.name} of competition #{@game.competition.name}"
+      = "#{@user.name} has updated the score of #{@game.round.name} game between #{@game.team_one.name} and #{@game.team_two.name} of competition #{@game.competition.name}"
     %h3
       = "#{@game.team_one.name} score: #{@game.team_one_score}"
     %h3 

@@ -1,14 +1,11 @@
 .well
-  = form_for @game, remote: true do |f|        
+  = bootstrap_form_for @game, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-6", remote: true  do |f|
     #error_explanation.bg-danger.text-danger
+  
+    = f.number_field :team_one_score
+  
+    = f.number_field :team_two_score  
     .control-group.update-score-fieldset
-      = f.label "#{@game.team_one.name}"
-      = f.number_field :team_one_score
-    .control-group.update-score-fieldset
-      = f.label "#{@game.team_two.name}"
-      = f.number_field :team_two_score  
-    .control-group.update-score-fieldset
-      = f.label :is_finished
       = f.check_box :is_finished  
     .form-group.action
       = f.submit 'Update Scores', class: 'btn btn-primary'

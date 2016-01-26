@@ -1,0 +1,12 @@
+.well
+  = bootstrap_form_for [:admin, @event], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-6"  do |f|            
+    #error_explanation.bg-danger.text-danger
+    = f.text_field :name
+
+    = f.datetime_select :time, ampm: true, class: 'datetime-select'
+    = f.text_field :address
+    = f.file_field :image
+    = f.check_box :member_only
+    = f.text_field :non_member_fee
+    = f.text_area :description
+    = f.submit @event.new_record? ? "Create" : 'Update',  class: 'btn btn-primary'

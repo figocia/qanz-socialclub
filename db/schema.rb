@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151111072000) do
+ActiveRecord::Schema.define(version: 20160124154619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,15 +41,23 @@ ActiveRecord::Schema.define(version: 20151111072000) do
     t.float    "longitude"
     t.boolean  "member_only",                            default: false
     t.decimal  "non_member_fee", precision: 5, scale: 2
+    t.string   "image"
   end
 
   create_table "games", force: true do |t|
-    t.string   "round"
     t.boolean  "is_finished"
     t.integer  "team_one_score", default: 0
     t.integer  "team_two_score", default: 0
     t.integer  "team_one_id"
     t.integer  "team_two_id"
+    t.integer  "competition_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "round_id"
+  end
+
+  create_table "rounds", force: true do |t|
+    t.string   "name"
     t.integer  "competition_id"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -4,6 +4,6 @@ Fabricator(:game) do
   team_two { Fabricate(:team)}
   team_one_score 0
   team_one_score 0
-  round 'Round 1'
+  round
 end
 

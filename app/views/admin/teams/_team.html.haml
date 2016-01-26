@@ -1,0 +1,13 @@
+.col-md-6
+  .panel.panel-primary
+    .panel-heading
+      .col-sm-11.nopadding
+        %h3.panel-title 
+          = team.name
+      .col-sm-1.nopadding
+        = link_to admin_competition_team_path(team.competition, team), method: :delete, remote: true do
+          %i.glyphicon.glyphicon-remove
+    .panel-body.team-droppable.panel-min-height{"data-team-id" => "#{team.id}"}
+      - team.team_members.each do |team_member|
+        = link_to "#{team_member.member.name}", '#', class: "btn btn-info btn-xs draggable", data: { team_member_id: team_member.id, user_id: team_member.member.id}
+      

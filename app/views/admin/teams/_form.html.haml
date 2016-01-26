@@ -1,0 +1,6 @@
+.well
+  = bootstrap_form_tag url: admin_competition_teams_path(@competition), layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-6", remote: true  do |f|            
+    #error_explanation.bg-danger.text-danger
+    = f.number_field :count, label: 'Number of Teams', value: '1'  
+    
+    = f.submit "Create",  class: 'btn btn-primary'

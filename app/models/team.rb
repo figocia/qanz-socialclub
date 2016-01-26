@@ -1,9 +1,11 @@
 class Team < ActiveRecord::Base
   belongs_to :competition
-  has_many :team_members
+  has_many :team_members, -> { order 'created_at desc' }, :dependent => :destroy
   has_many :members, through: :team_members
-  has_many :games, foreign_key: 'team_one_id'
-  has_many :inverse_games, class_name: 'Game', foreign_key: 'team_two_id'  
+  has_many :games, foreign_key: 'team_one_id', :dependent => :destroy
+  has_many :inverse_games, class_name: 'Game', foreign_key: 'team_two_id', :dependent => :destroy
+
+
 
   
   def total_score

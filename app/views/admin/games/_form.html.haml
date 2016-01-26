@@ -1,0 +1,8 @@
+.well
+  = bootstrap_form_for [:admin, @game], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-6", remote: true  do |f|            
+    #error_explanation.bg-danger.text-danger
+    = f.select :team_one_id, options_for_teams(@game.team_one_id, @round.competition), label: 'Team one'
+    = f.select :team_two_id, options_for_teams(@game.team_two_id, @round.competition), label: 'Team two'
+    = f.hidden_field :round_id, value: @round.id
+    = f.hidden_field :competition_id, value: @round.competition_id
+    = f.submit "Create",  class: 'btn btn-primary'

@@ -1,0 +1,5 @@
+.round.col-md-10        
+  = link_to "#{round.name}", admin_competition_round_path(@competition, round), class: 'btn btn-warning btn-homepage btn-lg btn-block'
+.col-sm-2.delete
+  = link_to admin_competition_round_path(round.competition, round), method: :delete, remote: true do
+    %i.glyphicon.glyphicon-remove

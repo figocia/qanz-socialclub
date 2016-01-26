@@ -1,0 +1,5 @@
+.well
+  = bootstrap_form_for [:admin, @competition, @round], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-6", remote: true  do |f|            
+    #error_explanation.bg-danger.text-danger
+    = f.text_field :name, value: @competition.latest_round_name      
+    = f.submit "Create",  class: 'btn btn-primary'

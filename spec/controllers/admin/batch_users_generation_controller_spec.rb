@@ -100,10 +100,24 @@ describe Admin::BatchUsersGenerationController do
         post :update_users, user_datas: [{id: alex.id, is_admin: true, is_member: false }, { id: tony.id, is_admin: false, is_member: true }]        
         expect(response).to redirect_to admin_batch_users_generation_index_path
       end
+    end    
+
+  end
+
+  describe 'DELETE Destroy' do
+    let(:tony) { Fabricate(:user) }
+    let(:admin) { Fabricate(:admin)}
+    before { login_admin }
+    
+    it_behaves_like 'require_admin' do
+      let(:action) { delete :destroy, id: tony.id}
+    end
+
+    it 'deletes the user' do
+      delete :destroy, id: tony.id
+      expect(User.all.size).to eq(1)
     end
     
-
-
 
   end
 

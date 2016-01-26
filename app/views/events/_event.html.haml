@@ -2,22 +2,26 @@
   .container
     .row
       .col-sm-7
-        %img(src="http://dummyimage.com/665x375/000000/00a2ff")
+        = image_tag event.image_url if event.image?
         .map
           %div{id: "map#{event.id}", class: 'gmaps4rails_map', style: 'width: 665px; height: 375px'}
         .actions{id: "event_action_#{event.id}"}
-          - if current_user.comming_to_event?(event)
-            = link_to "I'm not coming",event_participant_path(current_user.event_participant(event)), method: 'delete', class: "btn btn-warning"
-          - elsif event.is_free?(current_user)
-            = link_to "I'm coming", event_participants_path(event_id: event.id), method: 'post', class: "btn btn-primary"
-          - else
+          - unless admin
+            - if current_user.comming_to_event?(event)
+              = link_to "I'm not coming",event_participant_path(current_user.event_participant(event)), method: 'delete', class: "btn btn-warning"
+            - elsif event.is_free?(current_user)
+              = link_to "I'm coming", event_participants_path(event_id: event.id), method: 'post', class: "btn btn-primary"
+            - else
 
-            = link_to "Pay $#{event.non_member_fee} to come", nil, class: 'btn btn-success'
-            = link_to "Join social club to come for free", join_social_club_index_path(event_id: event.id), method: 'post', class: 'btn btn-primary'
-            
+              = link_to "Pay $#{event.non_member_fee} to come", nil, class: 'btn btn-success'
+              = link_to "Join social club to come for free", join_social_club_index_path(event_id: event.id), method: 'post', class: 'btn btn-primary'
+          - else
+            = link_to 'Edit', edit_admin_event_path(event), remote: true, class: 'btn btn-primary'
+            = link_to 'Delete', admin_event_path(event), method: 'delete', remote: true, class: 'btn btn-danger'  
       .event_info.col-sm-3
         %header
-          %h3 The Bournce
+          %h3 
+            = event.name
           %span.badge 
             = event.number_of_people_comming  
           People coming
@@ -26,7 +30,7 @@
             = "Address: #{event.address}"        
         .row    
           %h4
-            = event.time.strftime("%F at %I:%M%p")
+            = event.time.strftime("%F at %I:%M%p") if event.time?
         .row.description 
           %h4 Description:        
           %p 

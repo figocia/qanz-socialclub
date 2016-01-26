@@ -1,7 +1,8 @@
-- @competitions.each do |competition|
-  .competition 
-    %h2 
-      = competition.name
+- @competitions.each do |competition|  
+  - if competition.games.size > 0
+    .competition 
+      %h2 
+        = competition.name
 
-  = render competition.games
-= render 'dialog'
+    = render competition.games, admin: false
+= render 'shared/dialog'

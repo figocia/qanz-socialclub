@@ -4,7 +4,7 @@ class Admin::BatchUsersGenerationController < AdminsController
     @users = User.all.order('name')
   end
 
-  def new    
+  def new
   end
 
   def create
@@ -25,6 +25,12 @@ class Admin::BatchUsersGenerationController < AdminsController
     rescue ActiveRecord::RecordInvalid
       flash[:error] = 'Update users failed'      
     end
+    redirect_to admin_batch_users_generation_index_path
+  end
+
+  def destroy
+    user = User.find(params[:id])
+    user.destroy unless user.nil? 
     redirect_to admin_batch_users_generation_index_path
   end
 

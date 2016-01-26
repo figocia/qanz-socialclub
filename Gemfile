@@ -6,6 +6,8 @@ gem 'rails',                '4.1.1'
 
 gem 'pg'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 gem 'jquery-turbolinks'
@@ -19,6 +21,10 @@ gem 'bcrypt-ruby'
 gem 'figaro',               '1.0.0'
 gem 'gmaps4rails'
 gem 'geocoder'
+gem 'carrierwave'
+gem 'carrierwave-aws'
+
+gem "mini_magick"
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'

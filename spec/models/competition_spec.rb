@@ -3,6 +3,7 @@ require 'rails_helper'
 describe Competition do
   it{ should have_many(:games).order('is_finished, created_at DESC')}
   it{ should have_many(:teams)}
+  it{ should have_many(:rounds).order('created_at DESC')}
 
   describe '#popular_teams' do
     it 'gets the team with the correct sequence' do
@@ -55,6 +56,69 @@ describe Competition do
       game4 = Fabricate(:game, competition: competition, team_one: team2, team_two: team1, team_one_score: 2, team_two_score: 10, created_at: 4.day.ago)
 
       expect(competition.games_for_member(figo)).to eq([game1, game3, game4])
+    end
+  end
+
+  describe '#include member' do
+    it 'return true when the member participate in this competition' do
+      competition = Fabricate(:competition)
+      alice = Fabricate(:user)
+      tony = Fabricate(:user)
+      figo = Fabricate(:user)
+      alex = Fabricate(:user)
+      user1 = Fabricate(:user)
+      user2 = Fabricate(:user)
+      user3 = Fabricate(:user)
+      user4 = Fabricate(:user)
+      user5 = Fabricate(:user)
+      
+      team1 = Fabricate(:team, competition: competition )
+      team2 = Fabricate(:team, competition: competition )
+      team3 = Fabricate(:team, competition: competition )
+      team4 = Fabricate(:team, competition: competition )
+
+
+      team_member1 = Fabricate(:team_member, team: team1, member: alice)
+      team_member2 = Fabricate(:team_member, team: team1, member: figo )
+
+      team_member3 = Fabricate(:team_member, team: team2, member: tony)
+      team_member4 = Fabricate(:team_member, team: team2, member: alex )
+
+      team_member5 = Fabricate(:team_member, team: team3, member: user3)
+      team_member6 = Fabricate(:team_member, team: team3, member: user4 )
+
+      team_member7 = Fabricate(:team_member, team: team4, member: user1)
+      team_member8 = Fabricate(:team_member, team: team4, member: user2 )
+
+      expect(competition.include_member?(figo)).to be true
+    end
+
+  end
+
+  describe '#unallocatd_users' do
+    it 'returns the right number of unallocated users' do
+      competition = Fabricate(:competition)
+      alice = Fabricate(:user)
+      tony = Fabricate(:user)
+      figo = Fabricate(:user)
+      alex = Fabricate(:user)
+      user1 = Fabricate(:user)
+      user2 = Fabricate(:user)
+      user3 = Fabricate(:user)
+      user4 = Fabricate(:user)
+      user5 = Fabricate(:user)
+      
+      team1 = Fabricate(:team, competition: competition )
+      team2 = Fabricate(:team, competition: competition )
+      team3 = Fabricate(:team, competition: competition )
+      team4 = Fabricate(:team, competition: competition )
+
+
+      team_member1 = Fabricate(:team_member, team: team1, member: alice)
+      team_member2 = Fabricate(:team_member, team: team1, member: figo )
+
+      expect(competition.unallocated_users.size).to eq(7)
+
     end
   end
 

@@ -1,0 +1,4 @@
+// below reload is neccessary, otherwise first time adding team is not loading the team for some reason.
+$("#flash").html('<%= j render partial: "shared/messages" %>');
+
+$('.games-body').html('<%= j render @round.reload.games %>');
