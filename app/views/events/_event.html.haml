@@ -13,6 +13,7 @@
               = link_to "I'm coming", event_participants_path(event_id: event.id), method: 'post', class: "btn btn-primary"
             - else
 
+
               = link_to "Pay $#{event.non_member_fee} to come", nil, class: 'btn btn-success'
               = link_to "Join social club to come for free", join_social_club_index_path(event_id: event.id), method: 'post', class: 'btn btn-primary'
           - else
