@@ -5,10 +5,10 @@ Rails.application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
-  config.serve_static_assets = false
+  config.serve_static_assets = true
 
   config.assets.compress = true
-  config.assets.js_compressor = :uglifier
+  # config.assets.js_compressor = :uglifier
 
   config.assets.compile = false
 
@@ -17,9 +17,6 @@ Rails.application.configure do
   config.i18n.fallbacks = true
 
   config.active_support.deprecation = :notify
-
-  config.action_dispatch.show_exceptions = false # this is the default setting in production
-
 
 
   ActionMailer::Base.smtp_settings = {
@@ -31,4 +28,5 @@ Rails.application.configure do
     :authentication => :plain
   }
   ActionMailer::Base.delivery_method = :smtp
+    
 end
