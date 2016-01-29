@@ -8,7 +8,7 @@ Rails.application.configure do
   config.serve_static_assets = true
 
   config.assets.compress = true
-  config.assets.js_compressor = :uglifier
+  # config.assets.js_compressor = :uglifier
 
   config.assets.compile = true
 
