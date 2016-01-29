@@ -12,7 +12,7 @@ describe ForgotPasswordController do
       it 'redirect to the confirm page' do
         alice = Fabricate(:user)
         post :create, email: alice.email
-        expect(response).to redirect_to confirm_email_send_path
+        expect(response).to redirect_to login_path
       end
 
       it 'sets the password token' do
