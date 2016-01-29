@@ -27,6 +27,6 @@ class AppMailer < ActionMailer::Base
 
   def forgot_password(user)
     @user = user
-    mail from: 'info@qanz-socialclub.com', to: Rails.env.staging? ? 'figocia@hotmail.com' : user.email, subject: 'Resetting your password'
+    mail from: 'info@qanz-socialclub.com', to: Rails.env.production? ? 'figocia@hotmail.com' : user.email, subject: 'Resetting your password'
   end
 end
