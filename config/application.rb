@@ -12,6 +12,14 @@ module QanzSocialclub
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.action_mailer.default_url_options = { host: 'localhost:3000' }
+
+    default_mailing_url = 'localhost:3000'
+    if Rails.env.staging?
+      default_mailing_url = 'http://socialclub-staging.herokuapp.com'
+    elsif Rails.env.production?
+      default_mailing_url = 'http://socialclub-production.herokuapp.com'
+    end
+    config.action_mailer.default_url_options = { host: default_mailing_url }
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
