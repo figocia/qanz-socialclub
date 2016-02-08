@@ -10,12 +10,14 @@ class GamesController < ApplicationController
   end
 
   def edit
-    @game = Game.find(params[:id])
+    @game = Game.find(params[:id])    
+    @from_admin = params[:from_admin] == 'true'
   end
   
   def update    
-    @game = Game.find(params[:id])
-
+    @game = Game.find(params[:id])    
+    @from_admin = params[:game][:from_admin] == 'true'
+    
     respond_to do |format|
       if update_scores(@game, game_params)
         format.json { head :no_content }

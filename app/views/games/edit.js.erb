@@ -1,4 +1,4 @@
-$('.modal-body').html('<%= j render("form") %>');
+$('.modal-body').html('<%= j render("form", from_admin: @from_admin) %>');
 
 // Show the dynamic dialog
 $('#dialog').modal("show");

@@ -7,5 +7,6 @@
     = f.number_field :team_two_score  
     .control-group.update-score-fieldset
       = f.check_box :is_finished  
+      = f.hidden_field :from_admin, value: from_admin
     .form-group.action
       = f.submit 'Update Scores', class: 'btn btn-primary'
