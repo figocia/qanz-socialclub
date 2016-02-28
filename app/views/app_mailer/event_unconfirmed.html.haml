@@ -2,6 +2,6 @@
 %html(lang="en-US")
   %body
     %h2
-      = "The event #{link_to @event.name, event_url(@event)} is now cancelled"
+      = raw "The event #{link_to @event.name, event_url(@event)} is now cancelled"
     %footer
       &copy 2015 MyFLiX
