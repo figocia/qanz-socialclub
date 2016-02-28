@@ -48,13 +48,14 @@ class Admin::EventsController < AdminsController
     end
   end
 
-  def toggle_confirm
-    if @event.is_confirmed?
-      AppMailer.event_confirm(@event).deliver
-    else
-      AppMailer.event_unconfirm(@event).deliver
-    end
+  def toggle_confirm    
     @event.toggle_confirm
+    @event.reload
+    if @event.is_confirmed?
+      AppMailer.event_confirmed(@event).deliver
+    else
+      AppMailer.event_unconfirmed(@event).deliver
+    end
     respond_to do |format|
       format.js
     end

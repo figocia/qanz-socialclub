@@ -33,12 +33,12 @@ class AppMailer < ActionMailer::Base
   def event_confirmed(event)
     @event = event
     recipients = @event.participants.map(&:email).join(',')
-    mail from: 'info@qanz-socialclub.com', to: recipients, subject: "Confirmation of event #{@event.name}"
+    mail from: 'info@qanz-socialclub.com', to: Rails.env.staging? ? "figocia@hotmail.com" : recipients, subject: "Confirmation of event #{@event.name}" if recipients.size > 0
   end
 
   def event_unconfirmed(event)
     @event = event
     recipients = @event.participants.map(&:email).join(',')
-    mail from: 'info@qanz-socialclub.com', to: recipients, subject: "Cancellation of event #{@event.name}"
+    mail from: 'info@qanz-socialclub.com', to: Rails.env.staging? ? "figocia@hotmail.com" : recipients, subject: "Cancellation of event #{@event.name}" if recipients.size > 0
   end
 end

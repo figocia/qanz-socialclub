@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160124154619) do
+ActiveRecord::Schema.define(version: 20160228073609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20160124154619) do
     t.boolean  "member_only",                            default: false
     t.decimal  "non_member_fee", precision: 5, scale: 2
     t.string   "image"
+    t.boolean  "is_confirmed",                           default: false
   end
 
   create_table "games", force: true do |t|

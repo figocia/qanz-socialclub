@@ -90,7 +90,7 @@ describe Admin::EventsController do
     let(:alice) { Fabricate(:user)}
     let!(:event_participant1) { Fabricate(:event_participant, participant: current_user, event: party )}
     let!(:event_participant2) { Fabricate(:event_participant, participant: alice, event: party )}
-
+    after { ActionMailer::Base.deliveries.clear }
 
     it_behaves_like 'require_admin' do
       let(:action) { xhr :post, :toggle_confirm, id: party.id }      
@@ -98,7 +98,7 @@ describe Admin::EventsController do
 
     it 'sends email to all the partifipant when confirmed' do
       xhr :post, :toggle_confirm, id: party.id
-      expect(ActionMailer::Base.deliveries.size).to eq(2)
+      expect(ActionMailer::Base.deliveries).not_to eq([])
     end
 
     it 'toggles the is_confirmed attribute to true when not confirmed' do
@@ -107,8 +107,7 @@ describe Admin::EventsController do
       expect(party.is_confirmed?).to be true
     end
 
-    it 'toggles the is_confirmed attribute to false when confirmed' do
-      confirmed_party = 
+    it 'toggles the is_confirmed attribute to false when confirmed' do      
       xhr :post, :toggle_confirm, id: confirmed_party.id
       confirmed_party.reload
       expect(confirmed_party.is_confirmed?).to be false

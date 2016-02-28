@@ -16,11 +16,12 @@ class Event < ActiveRecord::Base
   end
 
   def is_confirmed?
-    is_confirmed
+    self.is_confirmed
   end
 
-  def toggle_confirm
-    is_confirmed = ! is_confirmed
+  def toggle_confirm    
+    
+    self.is_confirmed = !self.is_confirmed
     save
   end
 end
