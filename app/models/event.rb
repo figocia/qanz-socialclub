@@ -24,4 +24,8 @@ class Event < ActiveRecord::Base
     self.is_confirmed = !self.is_confirmed
     save
   end
+
+  def expired?
+    self.time < DateTime.now
+  end
 end
