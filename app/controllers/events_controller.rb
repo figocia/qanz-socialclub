@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_action :require_user
   
   def index
-    @events = Event.order('time').all    
+    @events = Event.order('time').where('time > ?', DateTime.now)    
   end
 
   def show
@@ -14,6 +14,6 @@ class EventsController < ApplicationController
   end
 
   def my_events
-    @events = current_user.events 
+    @events = current_user.events.reject{|event| event.time < DateTime.now}
   end
 end

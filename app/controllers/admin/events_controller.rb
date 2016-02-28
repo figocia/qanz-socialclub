@@ -1,7 +1,7 @@
 class Admin::EventsController < AdminsController
   before_action :find_event, except: [:index, :new, :create]
   def index
-    @events = Event.order('time').all
+    @events = Event.order('time desc').all
   end
 
   def new

@@ -24,7 +24,7 @@ describe Admin::EventsController do
 
     it 'returns the events in order' do
       get :index
-      expect(assigns(:events)).to eq([party, friday_lunch])
+      expect(assigns(:events)).to eq([friday_lunch, party])
     end
   end
 

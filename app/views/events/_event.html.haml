@@ -25,6 +25,13 @@
         %header
           %h3 
             = event.name
+          - if event.is_confirmed?
+            %span.label.label-success
+              Confirmed
+
+          -else
+            %span.label.label-warning
+              Not Confirmed          
           %span.badge 
             = event.number_of_people_comming  
           People coming
