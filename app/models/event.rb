@@ -14,4 +14,13 @@ class Event < ActiveRecord::Base
   def number_of_people_comming
     participants.size
   end
+
+  def is_confirmed?
+    is_confirmed
+  end
+
+  def toggle_confirm
+    is_confirmed = ! is_confirmed
+    save
+  end
 end

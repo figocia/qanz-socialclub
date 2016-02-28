@@ -29,4 +29,16 @@ class AppMailer < ActionMailer::Base
     @user = user
     mail from: 'info@qanz-socialclub.com', to: Rails.env.staging? ? 'figocia@hotmail.com' : user.email, subject: 'Resetting your password'
   end
+
+  def event_confirmed(event)
+    @event = event
+    recipients = @event.participants.map(&:email).join(',')
+    mail from: 'info@qanz-socialclub.com', to: recipients, subject: "Confirmation of event #{@event.name}"
+  end
+
+  def event_unconfirmed(event)
+    @event = event
+    recipients = @event.participants.map(&:email).join(',')
+    mail from: 'info@qanz-socialclub.com', to: recipients, subject: "Cancellation of event #{@event.name}"
+  end
 end

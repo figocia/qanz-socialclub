@@ -84,4 +84,36 @@ describe Admin::EventsController do
 
   end
 
+  describe 'POST Toggle_confirm' do
+    let(:party) { Fabricate(:event, time: 1.day.from_now, address: 'New York, NY') }
+    let(:confirmed_party) { Fabricate(:event, time: 1.day.from_now, address: 'New York, NY', is_confirmed: true)}
+    let(:alice) { Fabricate(:user)}
+    let!(:event_participant1) { Fabricate(:event_participant, participant: current_user, event: party )}
+    let!(:event_participant2) { Fabricate(:event_participant, participant: alice, event: party )}
+
+
+    it_behaves_like 'require_admin' do
+      let(:action) { xhr :post, :toggle_confirm, id: party.id }      
+    end
+
+    it 'sends email to all the partifipant when confirmed' do
+      xhr :post, :toggle_confirm, id: party.id
+      expect(ActionMailer::Base.deliveries.size).to eq(2)
+    end
+
+    it 'toggles the is_confirmed attribute to true when not confirmed' do
+      xhr :post, :toggle_confirm, id: party.id
+      party.reload
+      expect(party.is_confirmed?).to be true
+    end
+
+    it 'toggles the is_confirmed attribute to false when confirmed' do
+      confirmed_party = 
+      xhr :post, :toggle_confirm, id: confirmed_party.id
+      confirmed_party.reload
+      expect(confirmed_party.is_confirmed?).to be false
+    end
+
+  end
+
 end

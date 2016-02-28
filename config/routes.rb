@@ -43,6 +43,8 @@ Rails.application.routes.draw do
 
     resources :team_members, only: [:create, :destroy]
     resources :games, only: [:create, :new, :destroy]
-    resources :events
+    resources :events do
+      post 'toggle_confirm', on: :member
+    end
   end
 end

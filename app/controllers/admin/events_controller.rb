@@ -1,4 +1,5 @@
 class Admin::EventsController < AdminsController
+  before_action :find_event, except: [:index, :new, :create]
   def index
     @events = Event.order('time').all
   end
@@ -11,14 +12,12 @@ class Admin::EventsController < AdminsController
   end
   
   def edit
-    @event = Event.find(params[:id])
     respond_to do |format|
       format.js
     end
   end
 
   def update
-    @event = Event.find(params[:id])
     success = @event.update_attributes(event_params) if @event
     flash[:error] = 'Update failed' unless success
     redirect_to admin_events_path    
@@ -42,9 +41,20 @@ class Admin::EventsController < AdminsController
     end
   end
 
-  def destroy
-    event = Event.find(params[:id])    
-    event.destroy if event
+  def destroy    
+    @event.destroy if @event
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def toggle_confirm
+    if @event.is_confirmed?
+      AppMailer.event_confirm(@event).deliver
+    else
+      AppMailer.event_unconfirm(@event).deliver
+    end
+    @event.toggle_confirm
     respond_to do |format|
       format.js
     end
@@ -53,5 +63,9 @@ class Admin::EventsController < AdminsController
   private
   def event_params
     params.require(:event).permit(:name, :time, :address, :image, :member_only, :non_member_fee, :description)
+  end
+
+  def find_event
+    @event = Event.find(params[:id])
   end
 end
