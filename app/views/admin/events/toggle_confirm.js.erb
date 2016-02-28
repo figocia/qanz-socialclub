@@ -1,1 +1,1 @@
-$("#event<%= @event.id%>").html('<%= j render @event %>');
+$("#event<%= @event.id%>").replaceWith('<%= j render @event %>');
