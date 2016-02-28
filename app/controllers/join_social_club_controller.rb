@@ -9,14 +9,14 @@ class JoinSocialClubController < ApplicationController
         event_participant = EventParticipant.new(participant_id: current_user.id, event_id: params[:event_id])
         if event_participant.save
           current_user.generate_membership_token
-          AppMailer.join_social_club(current_user, event_participant.event).deliver          
+          AppMailer.delay.join_social_club(current_user, event_participant.event)
         else
           flash[:notice] = "Event already in your list"
         end        
         redirect_to my_events_path
       else
         current_user.generate_membership_token
-        AppMailer.join_social_club(current_user).deliver        
+        AppMailer.delay.join_social_club(current_user)
         redirect_to home_path
       end
     end

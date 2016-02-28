@@ -52,9 +52,9 @@ class Admin::EventsController < AdminsController
     @event.toggle_confirm
     @event.reload
     if @event.is_confirmed?
-      AppMailer.event_confirmed(@event).deliver
+      AppMailer.delay.event_confirmed(@event)
     else
-      AppMailer.event_unconfirmed(@event).deliver
+      AppMailer.delay.event_unconfirmed(@event)
     end
     respond_to do |format|
       format.js
